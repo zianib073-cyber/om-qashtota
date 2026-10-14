@@ -1,9 +1,6 @@
 // تاريخ مؤقت للعدّاد إلى أن يُحدَّد يوم الافتتاح الحقيقي.
 const LAUNCH_AT = new Date("2026-11-15T10:00:00+01:00");
 const DISCOUNT_CODE = "QASHTOTA20";
-const USERS_KEY = "omQashtotaUsers";
-const SESSION_KEY = "omQashtotaSession";
-const GOOGLE_CLIENT_ID = window.OM_QASHTOTA_GOOGLE_CLIENT_ID || "";
 
 // صورة الطبق: حط item.image ملي توصل صورة الحلوى، وإلا كيبان تصوير القسم.
 const CATEGORIES = [
@@ -233,269 +230,6 @@ function removeItem(id) {
     renderMenu();
 }
 
-function readUsers() {
-    try {
-        return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
-    } catch (error) {
-        return [];
-    }
-}
-
-function writeUsers(users) {
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
-}
-
-function currentUser() {
-    try {
-        const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
-        if (!session?.userId) return null;
-        return readUsers().find((user) => user.id === session.userId) || null;
-    } catch (error) {
-        return null;
-    }
-}
-
-function setSession(userId) {
-    localStorage.setItem(SESSION_KEY, JSON.stringify({ userId }));
-}
-
-function ensureDiscount(user) {
-    user.codes = [...new Set([...(user.codes || []), DISCOUNT_CODE])];
-    return user;
-}
-
-function saveUser(user) {
-    const users = readUsers();
-    const index = users.findIndex((item) => item.id === user.id);
-    if (index >= 0) users[index] = user;
-    else users.push(user);
-    writeUsers(users);
-    return user;
-}
-
-function initials(name) {
-    const parts = String(name || "أ").trim().split(/\s+/).slice(0, 2);
-    return parts.map((part) => part.charAt(0)).join("") || "أ";
-}
-
-function fillLeadFromUser(user) {
-    if (!user) return;
-    const form = document.getElementById("leadForm");
-    if (form.name && !form.name.value) form.name.value = user.name || "";
-    if (form.phone && !form.phone.value && user.phone) form.phone.value = user.phone;
-}
-
-async function hashPass(password) {
-    const data = new TextEncoder().encode("omq-v1:" + password);
-    const buf = await crypto.subtle.digest("SHA-256", data);
-    return [...new Uint8Array(buf)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
-}
-
-function decodeJwt(token) {
-    const payload = token.split(".")[1] || "";
-    const json = atob(payload.replace(/-/g, "+").replace(/_/g, "/"));
-    return JSON.parse(decodeURIComponent([...json].map((char) =>
-        "%" + char.charCodeAt(0).toString(16).padStart(2, "0")
-    ).join("")));
-}
-
-function loginIdentity({ name, email, picture, provider, phone }) {
-    email = String(email || "").trim().toLowerCase();
-    let user = readUsers().find((item) => item.email === email);
-    if (!user) {
-        user = ensureDiscount({
-            id: "u_" + Date.now().toString(36),
-            name: name || email.split("@")[0],
-            email,
-            picture: picture || "",
-            provider,
-            phone: phone || "",
-            reservations: [],
-            createdAt: new Date().toISOString()
-        });
-    } else {
-        user = ensureDiscount({
-            ...user,
-            name: name || user.name,
-            picture: picture || user.picture,
-            phone: phone || user.phone
-        });
-    }
-    saveUser(user);
-    setSession(user.id);
-    fillLeadFromUser(user);
-    renderAuthChrome();
-    openAuth("profile");
-    return user;
-}
-
-function renderAuthChrome() {
-    const user = currentUser();
-    const btnLabel = document.getElementById("authBtnLabel");
-    const face = document.getElementById("authFace");
-    const navAuth = document.getElementById("navAuth");
-    if (!user) {
-        btnLabel.textContent = "تسجيل الدخول";
-        navAuth.textContent = "تسجيل الدخول";
-        face.hidden = true;
-        face.textContent = "";
-        face.replaceChildren();
-        return;
-    }
-    btnLabel.textContent = user.name.split(/\s+/)[0];
-    navAuth.textContent = "حسابي";
-    face.hidden = false;
-    if (user.picture) {
-        const img = document.createElement("img");
-        img.src = user.picture;
-        img.alt = "";
-        face.replaceChildren(img);
-    } else {
-        face.replaceChildren();
-        face.textContent = initials(user.name);
-    }
-}
-
-function renderProfile() {
-    const user = currentUser();
-    if (!user) return;
-    document.getElementById("profileName").textContent = user.name;
-    document.getElementById("profileEmail").textContent = user.email;
-    document.getElementById("profileCode").textContent = (user.codes && user.codes[0]) || DISCOUNT_CODE;
-    const avatar = document.getElementById("profileAvatar");
-    if (user.picture) {
-        const img = document.createElement("img");
-        img.src = user.picture;
-        img.alt = "";
-        avatar.replaceChildren(img);
-    } else {
-        avatar.replaceChildren();
-        avatar.textContent = initials(user.name);
-    }
-    const box = document.getElementById("profileReservations");
-    const bookings = user.reservations || [];
-    box.innerHTML = bookings.length
-        ? bookings.map((row) => {
-            const items = (row.items || []).map((item) => `${item.name} ×${item.qty}`).join(" · ");
-            return `<p>${items || "كود الافتتاح"} — ${DISCOUNT_CODE}</p>`;
-        }).join("")
-        : "<p>ما كاين حتى حجز تذوق بعد. اختار من المنيو واحفظ الكود.</p>";
-}
-
-function openAuth(view) {
-    const modal = document.getElementById("authModal");
-    const gate = document.getElementById("authGate");
-    const profile = document.getElementById("authProfile");
-    const logged = Boolean(currentUser());
-    const showProfile = view === "profile" || (view !== "login" && view !== "signup" && view !== "google" && logged);
-    gate.hidden = showProfile;
-    profile.hidden = !showProfile;
-    modal.hidden = false;
-    if (showProfile) renderProfile();
-    else {
-        setAuthTab(view === "signup" ? "signup" : view === "google" ? "google" : "login");
-        loadGoogleIdentity();
-    }
-}
-
-function closeAuth() {
-    document.getElementById("authModal").hidden = true;
-}
-
-function showAuthError(message) {
-    const box = document.getElementById("authError");
-    box.hidden = false;
-    box.textContent = message;
-}
-
-function hideAuthError() {
-    const box = document.getElementById("authError");
-    box.hidden = true;
-    box.textContent = "";
-}
-
-let authTab = "login";
-
-function setAuthTab(tab) {
-    authTab = tab;
-    const title = document.getElementById("authTitle");
-    const submit = document.getElementById("authSubmit");
-    const nameRow = document.getElementById("authNameRow");
-    const passRow = document.getElementById("authPassRow");
-    const passInput = passRow.querySelector("input");
-    document.querySelectorAll("[data-auth-tab]").forEach((button) => {
-        if (button.dataset.authTab === tab) button.setAttribute("aria-current", "true");
-        else button.removeAttribute("aria-current");
-    });
-    hideAuthError();
-    if (tab === "signup") {
-        title.textContent = "إنشاء حساب";
-        submit.textContent = "إنشاء حساب";
-        nameRow.hidden = false;
-        passRow.hidden = false;
-        passInput.required = true;
-        passInput.autocomplete = "new-password";
-    } else if (tab === "google") {
-        title.textContent = "متابعة بحساب Google";
-        submit.textContent = "متابعة";
-        nameRow.hidden = false;
-        passRow.hidden = true;
-        passInput.required = false;
-        passInput.value = "";
-    } else {
-        title.textContent = "تسجيل الدخول";
-        submit.textContent = "دخول";
-        nameRow.hidden = true;
-        passRow.hidden = false;
-        passInput.required = true;
-        passInput.autocomplete = "current-password";
-    }
-}
-
-function loadGoogleIdentity() {
-    if (!GOOGLE_CLIENT_ID) return;
-    const mount = () => {
-        if (!window.google?.accounts?.id) return;
-        window.google.accounts.id.initialize({
-            client_id: GOOGLE_CLIENT_ID,
-            callback: (response) => {
-                const payload = decodeJwt(response.credential);
-                loginIdentity({
-                    name: payload.name,
-                    email: payload.email,
-                    picture: payload.picture,
-                    provider: "google"
-                });
-            },
-            ux_mode: "popup",
-            auto_select: false
-        });
-        const gsi = document.getElementById("googleGsi");
-        gsi.hidden = false;
-        gsi.innerHTML = "";
-        window.google.accounts.id.renderButton(gsi, {
-            type: "standard",
-            theme: "outline",
-            size: "large",
-            text: "continue_with",
-            shape: "pill",
-            locale: "ar",
-            width: 320
-        });
-    };
-    if (window.google?.accounts?.id) {
-        mount();
-        return;
-    }
-    if (document.getElementById("gsiClient")) return;
-    const script = document.createElement("script");
-    script.id = "gsiClient";
-    script.src = "https://accounts.google.com/gsi/client";
-    script.async = true;
-    script.onload = mount;
-    document.head.appendChild(script);
-}
-
 function saveLead(lead) {
     const key = "omQashtotaLeads";
     try {
@@ -505,19 +239,6 @@ function saveLead(lead) {
     } catch (error) {
         console.warn("lead storage skipped", error);
     }
-    const user = currentUser();
-    if (!user) return;
-    user.phone = user.phone || lead.phone;
-    user.name = user.name || lead.name;
-    ensureDiscount(user);
-    user.reservations = user.reservations || [];
-    user.reservations.push({
-        items: lead.items || [],
-        code: DISCOUNT_CODE,
-        at: lead.at
-    });
-    saveUser(user);
-    renderAuthChrome();
 }
 
 function showFormError(message) {
@@ -594,14 +315,12 @@ document.getElementById("leadForm").addEventListener("submit", (event) => {
         return;
     }
     const items = cartList().map((line) => ({ id: line.id, name: line.name, qty: line.qty }));
-    const user = currentUser();
     saveLead({
         name,
         phone,
         city: "الدروة",
         items,
         code: DISCOUNT_CODE,
-        userId: user?.id || "",
         at: new Date().toISOString()
     });
     openConfirm(items);
@@ -631,7 +350,6 @@ document.getElementById("vipForm").addEventListener("submit", (event) => {
         form.phone.focus();
         return;
     }
-    const user = currentUser();
     saveLead({
         name,
         phone,
@@ -639,7 +357,6 @@ document.getElementById("vipForm").addEventListener("submit", (event) => {
         source: "vip",
         items: [],
         code: DISCOUNT_CODE,
-        userId: user?.id || "",
         at: new Date().toISOString()
     });
     openConfirm([]);
@@ -665,110 +382,6 @@ document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
     document.getElementById("cartDrawer").hidden = true;
     document.getElementById("confirmModal").hidden = true;
-    document.getElementById("authModal").hidden = true;
-});
-
-function openAuthForUser() {
-    openAuth(currentUser() ? "profile" : "login");
-}
-
-document.getElementById("authBtn").addEventListener("click", openAuthForUser);
-document.getElementById("navAuth").addEventListener("click", openAuthForUser);
-document.getElementById("closeAuth").addEventListener("click", closeAuth);
-document.getElementById("authModal").addEventListener("click", (event) => {
-    if (event.target.id === "authModal") closeAuth();
-});
-document.querySelectorAll("[data-auth-tab]").forEach((button) => {
-    button.addEventListener("click", () => setAuthTab(button.dataset.authTab));
-});
-document.getElementById("googleSignIn").addEventListener("click", () => {
-    if (GOOGLE_CLIENT_ID && window.google?.accounts?.id) {
-        window.google.accounts.id.prompt();
-        return;
-    }
-    setAuthTab("google");
-    document.querySelector("#authForm [name=email]").focus();
-});
-document.getElementById("authForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim().toLowerCase();
-    const password = String(data.get("password") || "");
-    hideAuthError();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showAuthError("كتب بريد إلكتروني صحيح.");
-        form.email.focus();
-        return;
-    }
-    if (authTab === "google") {
-        if (name.length < 2) {
-            showAuthError("كتب الاسم.");
-            form.name.focus();
-            return;
-        }
-        loginIdentity({ name, email, provider: "google" });
-        form.reset();
-        return;
-    }
-    if (authTab === "signup") {
-        if (name.length < 2) {
-            showAuthError("كتب الاسم.");
-            form.name.focus();
-            return;
-        }
-        if (password.length < 6) {
-            showAuthError("كلمة السر تكون 6 حروف على الأقل.");
-            form.password.focus();
-            return;
-        }
-        if (readUsers().some((user) => user.email === email)) {
-            showAuthError("هاد البريد مسجّل. جرّب تسجيل الدخول.");
-            setAuthTab("login");
-            form.email.value = email;
-            return;
-        }
-        const passHash = await hashPass(password);
-        loginIdentity({ name, email, provider: "email" });
-        const user = currentUser();
-        user.passHash = passHash;
-        saveUser(user);
-        form.reset();
-        return;
-    }
-    const user = readUsers().find((item) => item.email === email);
-    if (!user || !user.passHash) {
-        showAuthError("ما كاينش حساب بهاد البريد. أنشئ حساب أو دخل بـ Google.");
-        return;
-    }
-    const passHash = await hashPass(password);
-    if (passHash !== user.passHash) {
-        showAuthError("كلمة السر غلط.");
-        form.password.focus();
-        return;
-    }
-    setSession(user.id);
-    fillLeadFromUser(user);
-    renderAuthChrome();
-    openAuth("profile");
-    form.reset();
-});
-document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.removeItem(SESSION_KEY);
-    renderAuthChrome();
-    setAuthTab("login");
-    openAuth("login");
-});
-document.getElementById("copyProfileCode").addEventListener("click", async () => {
-    const state = document.getElementById("profileCopyState");
-    const code = document.getElementById("profileCode").textContent || DISCOUNT_CODE;
-    try {
-        await navigator.clipboard.writeText(code);
-        state.textContent = "تم نسخ الكود: " + code;
-    } catch (error) {
-        state.textContent = "الكود: " + code;
-    }
 });
 
 function initHeroSlider() {
@@ -826,7 +439,6 @@ function initHeroSlider() {
 
 renderMenu();
 renderCart();
-renderAuthChrome();
 initHeroSlider();
 tickCountdown();
 setInterval(tickCountdown, 1000);

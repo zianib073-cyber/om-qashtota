@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@700;800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/hero/hero-qashtota.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="style.css?v=24">
+    <link rel="stylesheet" href="style.css?v=25">
 </head>
 <body>
     <div class="topbar">
@@ -33,17 +33,10 @@
                     <a href="#menu">المنيو</a>
                     <a href="#offer">العرض</a>
                     <a href="#reserve">الحجز</a>
-                    <button class="nav-auth" type="button" id="navAuth">تسجيل الدخول</button>
                 </nav>
-                <div class="header-actions">
-                    <button class="btn btn-ghost auth-btn" type="button" id="authBtn" aria-controls="authModal" aria-label="تسجيل الدخول أو إنشاء حساب">
-                        <span class="auth-face" id="authFace" hidden></span>
-                        <span id="authBtnLabel">تسجيل الدخول</span>
-                    </button>
-                    <button class="btn btn-gold cart-btn" type="button" id="openCart" aria-controls="cartDrawer">
-                        السلة <span class="cart-count" id="cartCount">0</span>
-                    </button>
-                </div>
+                <button class="btn btn-gold cart-btn" type="button" id="openCart" aria-controls="cartDrawer">
+                    السلة <span class="cart-count" id="cartCount">0</span>
+                </button>
             </div>
         </header>
     </div>
@@ -65,7 +58,7 @@
             <div class="wrap hero-content">
                 <p class="slide-chip" id="heroCaption">أم القشطوطة المانجو والبيستاشيو</p>
                 <p class="teaser">📍 قريباً الافتتاح الكبير لمحلنا الرسمي بمدينة <strong class="glow-city">الدروة (Deroua)!</strong></p>
-                <h1>قريباً... عالم القشطوطة والحلويات الفاخرة بالدروة</h1>
+                <h1>عالم القشطوطة والحلويات الفاخرة بين يديك</h1>
                 <p class="hero-lead">ذوق أصيل، تقديم فاخر، ولحظة حجز تضمن لك خصم الافتتاح قبل الزحمة.</p>
                 <p class="countdown-label">العدّ التنازلي للافتتاح</p>
                 <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true" aria-label="العد التنازلي لافتتاح المحل">
@@ -187,70 +180,6 @@
         </div>
     </aside>
 
-    <div class="modal" id="authModal" hidden>
-        <div class="modal-card auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-            <button type="button" class="icon-close" id="closeAuth" aria-label="إغلاق">×</button>
-            <div id="authGate">
-                <p class="modal-kicker">حساب أم قشطوطة</p>
-                <h2 id="authTitle">تسجيل الدخول</h2>
-                <p class="auth-lead">احفظ كود خصم الافتتاح <strong>QASHTOTA20</strong> وتفاصيل ذوقك لفرع الدروة.</p>
-                <button type="button" class="btn-google" id="googleSignIn">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill="#4285F4" d="M21.6 12.23c0-.76-.07-1.49-.2-2.19H12v4.15h5.38a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 2.98-4.33 2.98-7.48z"/>
-                        <path fill="#34A853" d="M12 22c2.7 0 4.97-.9 6.63-2.43l-3.24-2.5c-.9.6-2.05.96-3.39.96-2.6 0-4.81-1.76-5.6-4.12H3.06v2.58A10 10 0 0 0 12 22z"/>
-                        <path fill="#FBBC05" d="M6.4 13.91a6 6 0 0 1 0-3.82V7.51H3.06a10 10 0 0 0 0 8.98l3.34-2.58z"/>
-                        <path fill="#EA4335" d="M12 5.98c1.47 0 2.78.5 3.82 1.5l2.86-2.86C16.96 2.97 14.7 2 12 2 7.7 2 3.99 4.47 3.06 7.51l3.34 2.58C7.19 7.73 9.4 5.98 12 5.98z"/>
-                    </svg>
-                    <span>
-                        تسجيل الدخول بواسطة Google
-                        <small lang="en">Continue with Google</small>
-                    </span>
-                </button>
-                <div id="googleGsi" class="google-gsi" hidden></div>
-                <p class="auth-or">أو بالبريد</p>
-                <div class="auth-tabs" role="tablist">
-                    <button type="button" role="tab" data-auth-tab="login" aria-current="true">تسجيل الدخول</button>
-                    <button type="button" role="tab" data-auth-tab="signup">إنشاء حساب</button>
-                </div>
-                <form id="authForm" novalidate>
-                    <label id="authNameRow" hidden>الاسم
-                        <input type="text" name="name" autocomplete="name" placeholder="اسمك">
-                    </label>
-                    <label>البريد الإلكتروني
-                        <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@gmail.com">
-                    </label>
-                    <label id="authPassRow">كلمة السر
-                        <input type="password" name="password" autocomplete="current-password" minlength="6" placeholder="٦ حروف على الأقل">
-                    </label>
-                    <p class="form-error" id="authError" hidden></p>
-                    <button class="btn btn-gold btn-block" type="submit" id="authSubmit">دخول</button>
-                </form>
-            </div>
-            <div id="authProfile" hidden>
-                <p class="modal-kicker">حسابك</p>
-                <div class="profile-head">
-                    <span class="auth-face lg" id="profileAvatar"></span>
-                    <div>
-                        <h2 id="profileName"></h2>
-                        <p class="profile-email" id="profileEmail"></p>
-                    </div>
-                </div>
-                <p class="profile-store">📍 قريباً بفرع الدروة — Deroua</p>
-                <div class="code-card">
-                    <span>كود الخصم المحفوظ</span>
-                    <strong id="profileCode">QASHTOTA20</strong>
-                    <button class="btn btn-gold" type="button" id="copyProfileCode">نسخ الكود</button>
-                    <p class="copy-state" id="profileCopyState" aria-live="polite"></p>
-                </div>
-                <div class="profile-bookings">
-                    <h3>حجوزات التذوق</h3>
-                    <div id="profileReservations"></div>
-                </div>
-                <button class="btn btn-navy btn-block" type="button" id="logoutBtn">تسجيل الخروج</button>
-            </div>
-        </div>
-    </div>
-
     <div class="modal" id="confirmModal" hidden>
         <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
             <p class="modal-kicker">تم حجز كود الخصم</p>
@@ -277,6 +206,6 @@
         </a>
     </div>
 
-    <script src="script.js?v=24" defer></script>
+    <script src="script.js?v=25" defer></script>
 </body>
 </html>
