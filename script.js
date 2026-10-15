@@ -21,23 +21,6 @@ const CATEGORIES = [
         ]
     },
     {
-        id: "icecream",
-        title: "قسم المثلجات والگلاص الفاخر",
-        en: "Premium Ice Cream — Round Tubs",
-        image: "images/icecream.jpg",
-        coming: "📍 قريباً بفرع الدروة - خصم 20%",
-        blurb: "آيس كريم فاخر بطعم مميز وبقوام كريمي غني",
-        blurbFr: "Ice Cream Premium",
-        blurbLang: "en",
-        items: [
-            { id: "i-pistachio", image: "images/plates/i-pistachio.jpg", name: "گلاص فستق بصوص غني", en: "Pistachio Ice Cream", desc: "سكوب فستق كثيف وصوص فستق غني، داخل العلبة الدائرية بالشعار." },
-            { id: "i-lotus", image: "images/plates/i-lotus.jpg", name: "گلاص لوتس", en: "Lotus Ice Cream", desc: "گلاص لوتس كريمي مع فتات البسكويت وصوص الكراميل في العلبة الدائرية." },
-            { id: "i-mango", image: "images/plates/i-mango.jpg", name: "گلاص مانجو مع صوص غني", en: "Mango Ice Cream", desc: "سكوبات مانجو مدوّرة، صوص مانجو ذهبي يسيل عليها، ومكعبات مانجو طازجة. في العلبة الدائرية." },
-            { id: "i-cheesecake", image: "images/plates/i-cheesecake.jpg", name: "گلاص تشيزكيك", en: "Cheesecake Ice Cream", desc: "قوام تشيزكيك كريمي بارد، مقدّم في نفس العلبة الدائرية." },
-            { id: "i-caramel", image: "images/plates/i-caramel.jpg", name: "گلاص حليب وكراميل", en: "Milk & Caramel Ice Cream", desc: "گلاص حليب ناعم وكراميل دافئ يسيل فوقه، في العلبة الدائرية." }
-        ]
-    },
-    {
         id: "qashtota",
         title: "قسم القشطوطة",
         en: "Qashtouta Showcase",
@@ -62,6 +45,23 @@ const CATEGORIES = [
             { id: "q-fraise", image: "images/plates/q-fraise.jpg", name: "قشطوطة فراولة وشوكولاتة", en: "Qashtouta Chocolat & Fraise", desc: "فراولة طرية وشوكولاتة بلجيكية داكنة فوق الكيك والكريمة." },
             { id: "q-choco", image: "images/plates/q-choco.jpg", name: "قشطوطة شوكولاتة", en: "Qashtouta Chocolate", desc: "شوكولاتة بلجيكية كثيفة تسيل على جوانب الكيك الذهبي." },
             { id: "q-sada", image: "images/plates/q-sada.jpg", name: "قشطوطة سادة", en: "Qashtouta Sada", desc: "الأصل بلا زيادة: كيك متشرب بالحليب 24 ساعة وكريمة بلجيكية صافية." }
+        ]
+    },
+    {
+        id: "icecream",
+        title: "قسم المثلجات والگلاص الفاخر",
+        en: "Premium Ice Cream — Round Tubs",
+        image: "images/icecream.jpg",
+        coming: "📍 قريباً بفرع الدروة - خصم 20%",
+        blurb: "آيس كريم فاخر بطعم مميز وبقوام كريمي غني",
+        blurbFr: "Ice Cream Premium",
+        blurbLang: "en",
+        items: [
+            { id: "i-pistachio", image: "images/plates/i-pistachio.jpg", name: "گلاص فستق بصوص غني", en: "Pistachio Ice Cream", desc: "سكوب فستق كثيف وصوص فستق غني، داخل العلبة الدائرية بالشعار." },
+            { id: "i-lotus", image: "images/plates/i-lotus.jpg", name: "گلاص لوتس", en: "Lotus Ice Cream", desc: "گلاص لوتس كريمي مع فتات البسكويت وصوص الكراميل في العلبة الدائرية." },
+            { id: "i-mango", image: "images/plates/i-mango.jpg", name: "گلاص مانجو مع صوص غني", en: "Mango Ice Cream", desc: "سكوبات مانجو مدوّرة، صوص مانجو ذهبي يسيل عليها، ومكعبات مانجو طازجة. في العلبة الدائرية." },
+            { id: "i-cheesecake", image: "images/plates/i-cheesecake.jpg", name: "گلاص تشيزكيك", en: "Cheesecake Ice Cream", desc: "قوام تشيزكيك كريمي بارد، مقدّم في نفس العلبة الدائرية." },
+            { id: "i-caramel", image: "images/plates/i-caramel.jpg", name: "گلاص حليب وكراميل", en: "Milk & Caramel Ice Cream", desc: "گلاص حليب ناعم وكراميل دافئ يسيل فوقه، في العلبة الدائرية." }
         ]
     },
     {
