@@ -71,10 +71,10 @@ const CATEGORIES = [
         coming: "📍 قريباً بفرع الدروة - خصم 20%",
         image: "images/conut.jpg",
         items: [
-            { id: "c-one", name: "ذا ون", en: "The One — Caramel & Strawberry", desc: "كونوت بالكراميل والفراولة — التوقيع العصري." },
-            { id: "c-pistachio", name: "كونوت بكريمة الفستق", en: "Pistachio Cream Conut", desc: "طبقات هشة محشوة بكريمة الفستق." },
-            { id: "c-triple", name: "شوكولاتة ثلاثية وبراونيز", en: "Triple Chocolate & Brownies Conut", desc: "شوكولاتة ثلاثية مع قطع براونيز." },
-            { id: "c-lemon", name: "تشيزكيك ليمون بوسطن", en: "Lemon Boston Cheesecake Conut", desc: "كونوت بنكهة تشيزكيك الليمون البوسطن." }
+            { id: "c-one", image: "images/plates/c-one.jpg", name: "ذا ون", en: "The One — Caramel & Strawberry", desc: "كونوت أسطواني من عجين ملفوف مدخّن بسكر القرفة، مبطّن بكريمة كراميل مملح وشرائح فراولة طازجة." },
+            { id: "c-pistachio", image: "images/plates/c-pistachio.jpg", name: "كونوت بكريمة الفستق", en: "Pistachio Cream Conut", desc: "كونوت أسطواني ذهبي بسكر القرفة، مبطّن بكريمة فستق غنية ومكسرات فستق محمصة." },
+            { id: "c-triple", image: "images/plates/c-triple.jpg", name: "شوكولاتة ثلاثية وبراونيز", en: "Triple Chocolate & Brownies Conut", desc: "كونوت أسطواني بسكر القرفة، محشي سبريد شوكولاتة بلجيكية الداكنة ومكعبات براونيز." },
+            { id: "c-lemon", image: "images/plates/c-lemon.jpg", name: "تشيزكيك ليمون بوسطن", en: "Lemon Boston Cheesecake Conut", desc: "كونوت أسطواني بسكر القرفة، مبطّن بحشوة تشيزكيك بوسطن وكيرد ليمون أصفر ناصع." }
         ]
     },
     {
@@ -116,7 +116,7 @@ function tickCountdown() {
 
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=fast" : src;
+    return item.image ? src + "?v=28" : src;
 }
 
 function findItem(id) {
