@@ -116,7 +116,7 @@ function tickCountdown() {
 
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=28" : src;
+    return item.image ? src + "?v=31" : src;
 }
 
 function findItem(id) {
