@@ -116,7 +116,7 @@ function tickCountdown() {
 
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=32" : src;
+    return item.image ? src + "?v=33" : src;
 }
 
 function findItem(id) {
@@ -157,8 +157,8 @@ function renderMenu() {
                     <article class="card${shape}">
                         <div class="plate">
                             <img src="${plateSrc(cat, item)}" alt="${item.name} — ${item.en}" width="${cat.id === "qashtota" ? "800" : "600"}" height="${cat.id === "qashtota" ? "600" : "600"}" loading="lazy" decoding="async">
-                            <span class="mark">قريباً</span>
                         </div>
+                        <span class="mark">قريباً - خصم 20%<span lang="en" dir="ltr">Coming Soon • 20% OFF</span></span>
                         <h4>${item.name}</h4>
                         <p class="en" lang="en">${item.en}</p>
                         <p class="desc">${item.desc}</p>
