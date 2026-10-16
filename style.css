@@ -467,14 +467,17 @@ a { color: inherit; text-decoration: none; }
 }
 .plate {
     position: relative;
+    display: block;
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
     margin: 0 auto 10px;
     background: #fff;
     border-radius: 50% !important;
     overflow: hidden;
     flex-shrink: 0;
+    clip-path: circle(closest-side at 50% 50%);
 }
 .card img {
     position: absolute;
@@ -489,6 +492,7 @@ a { color: inherit; text-decoration: none; }
     object-position: center;
     border-radius: 50% !important;
     background: #fff;
+    clip-path: circle(closest-side at 50% 50%);
 }
 .mark {
     position: relative;
@@ -789,8 +793,10 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
 }
 .card-pack .plate,
 .card-bowl .plate {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
     border-radius: 50% !important;
+    clip-path: circle(closest-side at 50% 50%);
 }
 .card-pack img,
 .card-bowl img {
