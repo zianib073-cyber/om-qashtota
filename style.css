@@ -781,6 +781,22 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
     object-position: center;
     border-radius: 50%;
 }
+
+/* Mobile: keep the circular frame, but fit the entire square photo
+   inside the circle so garnishes, sauces, and bases are not clipped.
+   Inscribed-square size ≈ diameter / √2. */
+@media (max-width: 799px) {
+    .card img,
+    .card-pack img,
+    .card-bowl img {
+        object-fit: contain;
+        object-position: center;
+        inset: 15%;
+        width: 70%;
+        height: 70%;
+        border-radius: 18px;
+    }
+}
 .card-pack .mark { top: 10px; inset-inline-start: 10px; }
 .grid-pack { grid-template-columns: 1fr; }
 @media (min-width: 800px) {
