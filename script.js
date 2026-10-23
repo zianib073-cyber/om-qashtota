@@ -116,7 +116,7 @@ function tickCountdown() {
 
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=34" : src;
+    return item.image ? src + "?v=38" : src;
 }
 
 function findItem(id) {
@@ -154,16 +154,17 @@ function renderMenu() {
                     const qty = cart.get(item.id)?.qty || 0;
                     const shape = cat.id === "qashtota" ? " card-pack" : (cat.id === "koshari" || cat.id === "icecream") ? " card-bowl" : "";
                     return `
-                    <article class="card${shape}">
-                        <div class="plate">
+                    <article class="card neon-border${shape}">
+                        <div class="plate circular-img-container">
                             <img src="${plateSrc(cat, item)}" alt="${item.name} — ${item.en}" width="${cat.id === "qashtota" ? "800" : "600"}" height="${cat.id === "qashtota" ? "600" : "600"}" loading="lazy" decoding="async">
                         </div>
-                        <span class="mark">قريباً — تخفيض 20%<span lang="en" dir="ltr">Coming Soon • 20% OFF</span></span>
                         <h4>${item.name}</h4>
                         <p class="en" lang="en">${item.en}</p>
                         <p class="desc">${item.desc}</p>
-                        <p class="offer-chip">قريباً — تخفيض 20%<span lang="en" dir="ltr">Coming Soon • 20% OFF</span></p>
-                        <button class="btn btn-reserve" type="button" data-add="${item.id}">${qty ? `في الحجز ×${qty}` : "قريباً — احجز تخفيض 20%<small lang=\"en\">Coming soon · 20% OFF</small>"}</button>
+                        <div class="card-foot">
+                            <span class="featured-badge">مميز وجديد ✨</span>
+                            <button class="btn btn-reserve" type="button" data-add="${item.id}">${qty ? `في الحجز ×${qty}` : "قريباً — احجز تخفيض 20%<small lang=\"en\">Coming soon · 20% OFF</small>"}</button>
+                        </div>
                     </article>
                 `;
                 }).join("")}
