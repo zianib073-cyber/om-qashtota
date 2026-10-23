@@ -1,13 +1,10 @@
-// تاريخ مؤقت للعدّاد إلى أن يُحدَّد يوم الافتتاح الحقيقي.
-const LAUNCH_AT = new Date("2026-11-15T10:00:00+01:00");
-
 const CATEGORIES = [
     {
         id: "koshari",
         title: "قسم الكشري الحلو",
         en: "Koshari Sweet — Round Bowls",
         image: "images/koshari.jpg",
-        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
+        coming: "قريباً بالدروة - همزة / تخفيض",
         blurb: "تجربة الكشري الحلو الفاخرة، طبقات من الإبداع واللذة",
         blurbFr: "Expérience Koshari Sweet Premium",
         items: [
@@ -23,7 +20,7 @@ const CATEGORIES = [
         title: "قسم القشطوطة",
         en: "Qashtouta Showcase",
         image: "images/qashtota.jpg",
-        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
+        coming: "قريباً بالدروة - همزة / تخفيض",
         blurb: "كيك طري متشرب لبن 24 ساعة بكريمة بلجيكي فاخرة وإضافات على مزاجك",
         blurbFr: "Gâteau moelleux imbibé de lait 24h, nappé de crème belge premium et de vos toppings préférés",
         items: [
@@ -50,7 +47,7 @@ const CATEGORIES = [
         title: "قسم المثلجات والگلاص الفاخر",
         en: "Premium Ice Cream — Round Tubs",
         image: "images/icecream.jpg",
-        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
+        coming: "قريباً بالدروة - همزة / تخفيض",
         blurb: "آيس كريم فاخر بطعم مميز وبقوام كريمي غني",
         blurbFr: "Ice Cream Premium",
         blurbLang: "en",
@@ -66,7 +63,7 @@ const CATEGORIES = [
         id: "conut",
         title: "قسم الكونوت العصري",
         en: "Conut Line",
-        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
+        coming: "قريباً بالدروة - همزة / تخفيض",
         image: "images/conut.jpg",
         items: [
             { id: "c-one", image: "images/plates/c-one.jpg", name: "ذا ون", en: "The One — Caramel & Strawberry", desc: "كونوت أسطواني من عجين ملفوف مدخّن بسكر القرفة، مبطّن بكريمة كراميل مملح وشرائح فراولة طازجة." },
@@ -79,7 +76,7 @@ const CATEGORIES = [
         id: "cake",
         title: "قسم سان سيباستيان والكيك",
         en: "San Sebastian & Cakes",
-        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
+        coming: "قريباً بالدروة - همزة / تخفيض",
         image: "images/cake.jpg",
         items: [
             { id: "ck-kunafa", name: "كيك كنافة بصوص الفستق", en: "Kunafa Pistachio Cake", desc: "كيك كنافة مع صوص فستق يغمر كل قطعة." },
@@ -90,115 +87,36 @@ const CATEGORIES = [
     }
 ];
 
-function pad(n) {
-    return String(n).padStart(2, "0");
-}
-
-function tickCountdown() {
-    const now = Date.now();
-    let diff = Math.max(0, LAUNCH_AT.getTime() - now);
-    const days = Math.floor(diff / 86400000);
-    diff -= days * 86400000;
-    const hours = Math.floor(diff / 3600000);
-    diff -= hours * 3600000;
-    const mins = Math.floor(diff / 60000);
-    diff -= mins * 60000;
-    const secs = Math.floor(diff / 1000);
-    document.getElementById("cdDays").textContent = pad(days);
-    document.getElementById("cdHours").textContent = pad(hours);
-    document.getElementById("cdMins").textContent = pad(mins);
-    document.getElementById("cdSecs").textContent = pad(secs);
-}
-
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=35" : src;
+    return item.image ? src + "?v=36" : src;
 }
 
 function renderMenu() {
     const root = document.getElementById("menuGrid");
     root.innerHTML = CATEGORIES.map((cat) => `
-        <section class="cat-block" id="${cat.id}">
-            <div class="cat-head">
-                <h3>${cat.title}</h3>
-                <span>${cat.en}</span>
-                ${cat.coming ? `<p class="cat-soon">${cat.coming}</p>` : ""}
-                ${cat.blurb ? `<p class="cat-blurb">${cat.blurb}<span lang="${cat.blurbLang || "fr"}">${cat.blurbFr}</span></p>` : ""}
+        <section class="mb-14" id="${cat.id}">
+            <div class="text-center mb-8">
+                <h3 class="text-3xl md:text-4xl font-black">${cat.title}</h3>
+                <p class="text-fuchsia-300/80 mt-1" lang="en">${cat.en}</p>
+                ${cat.coming ? `<p class="neon-badge inline-block mt-3 text-white px-4 py-1.5 rounded-full text-xs font-bold">${cat.coming}</p>` : ""}
+                ${cat.blurb ? `<p class="text-fuchsia-100/70 mt-3 max-w-2xl mx-auto">${cat.blurb}<span class="block text-sm mt-1" lang="${cat.blurbLang || "fr"}">${cat.blurbFr}</span></p>` : ""}
             </div>
-            <div class="grid${cat.id === "qashtota" ? " grid-pack" : ""}">
-                ${cat.items.map((item) => {
-                    const shape = cat.id === "qashtota" ? " card-pack" : (cat.id === "koshari" || cat.id === "icecream") ? " card-bowl" : "";
-                    return `
-                    <article class="card${shape}">
-                        <div class="plate">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7">
+                ${cat.items.map((item) => `
+                    <article class="neon-border rounded-3xl bg-fuchsia-950/20 p-4 text-center">
+                        <div class="circular-img-container mx-auto mb-4">
                             <img src="${plateSrc(cat, item)}" alt="${item.name} — ${item.en}" width="600" height="600" loading="lazy" decoding="async">
                         </div>
-                        <span class="mark">قريباً — تخفيض 20%<span lang="en" dir="ltr">Coming Soon • 20% OFF</span></span>
-                        <h4>${item.name}</h4>
-                        <p class="en" lang="en">${item.en}</p>
-                        <p class="desc">${item.desc}</p>
+                        <span class="neon-badge inline-block text-white px-3 py-1 rounded-full text-[11px] font-bold mb-2">قريباً بالدروة - همزة / تخفيض</span>
+                        <h4 class="text-lg font-black leading-tight">${item.name}</h4>
+                        <p class="text-fuchsia-300/80 text-xs mt-1" lang="en">${item.en}</p>
+                        <p class="text-fuchsia-100/70 text-sm mt-2 leading-relaxed">${item.desc}</p>
                     </article>
-                `;
-                }).join("")}
+                `).join("")}
             </div>
         </section>
     `).join("");
 }
 
-function initHeroSlider() {
-    const slides = [...document.querySelectorAll(".hero-slide")];
-    const dotsBox = document.getElementById("heroDots");
-    const caption = document.getElementById("heroCaption");
-    if (!slides.length || !dotsBox || !caption) return;
-    let index = 0;
-    let timer;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    dotsBox.innerHTML = slides.map((_, n) =>
-        `<button type="button" role="tab" aria-label="شريحة ${n + 1}" data-slide="${n}"></button>`
-    ).join("");
-    const dots = [...dotsBox.querySelectorAll("button")];
-
-    function go(n) {
-        index = (n + slides.length) % slides.length;
-        slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
-        dots.forEach((dot, i) => {
-            if (i === index) dot.setAttribute("aria-current", "true");
-            else dot.removeAttribute("aria-current");
-        });
-        caption.textContent = slides[index].dataset.caption || "";
-        const img = slides[index].querySelector("img");
-        if (img && !reduce) {
-            img.style.animation = "none";
-            void img.offsetWidth;
-            img.style.animation = "";
-        }
-    }
-
-    function play() {
-        clearInterval(timer);
-        if (reduce) return;
-        timer = setInterval(() => go(index + 1), 6500);
-    }
-
-    document.getElementById("heroPrev").addEventListener("click", () => {
-        go(index - 1);
-        play();
-    });
-    document.getElementById("heroNext").addEventListener("click", () => {
-        go(index + 1);
-        play();
-    });
-    dotsBox.addEventListener("click", (event) => {
-        const btn = event.target.closest("[data-slide]");
-        if (!btn) return;
-        go(Number(btn.dataset.slide));
-        play();
-    });
-    go(0);
-    play();
-}
-
 renderMenu();
-initHeroSlider();
-tickCountdown();
-setInterval(tickCountdown, 1000);

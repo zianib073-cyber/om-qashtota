@@ -3,131 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أم قشطوطة | Om Qashtota — فرع الدروة</title>
-    <meta name="description" content="عالم القشطوطة والحلويات الفاخرة. منيو أم قشطوطة — فرع الدروة: كشري حلو، قشطوطة، مثلجات، كونوت، وسان سيباستيان.">
+    <title>أم قشطوطة - فرع الدروة | Om Qashtota</title>
+    <meta name="description" content="الكاتالوج الرسمي لفرع الدروة: قشطوطة، كشري حلو، مثلجات، كونوت، وسان سيباستيان.">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@700;800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/hero/hero-qashtota.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="style.css?v=35">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #0D051A 0%, #1A0B2E 50%, #0D051A 100%);
+        }
+        .circular-img-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50% !important;
+            overflow: hidden;
+            border: 3px solid #D946EF;
+            box-shadow: 0 0 20px rgba(217, 70, 239, 0.35), inset 0 0 15px rgba(217, 70, 239, 0.2);
+            background-color: #1A0B2E;
+        }
+        .circular-img-container img {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 50% !important;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .neon-border {
+            border: 1px solid rgba(217, 70, 239, 0.4);
+            box-shadow: 0 0 15px rgba(217, 70, 239, 0.15);
+        }
+        .neon-badge {
+            background: linear-gradient(90deg, #D946EF 0%, #A855F7 100%);
+            box-shadow: 0 0 12px rgba(217, 70, 239, 0.6);
+        }
+    </style>
 </head>
-<body>
-    <div class="topbar">
-        <div class="ticker" role="region" aria-label="افتتاح فرع الدروة">
-            <span class="vip-badge">قريباً</span>
-            <div class="ticker-window">
-                <div class="ticker-track">
-                    <p>📍 أم قشطوطة — فرع <span class="glow-city">الدروة</span>! قريباً الافتتاح · تخفيض 20% على المنيو ✨</p>
-                    <p aria-hidden="true">📍 أم قشطوطة — فرع <span class="glow-city">الدروة</span>! قريباً الافتتاح · تخفيض 20% على المنيو ✨</p>
+<body class="text-white min-h-screen flex flex-col justify-between selection:bg-fuchsia-500 selection:text-white">
+
+    <header class="w-full py-6 px-4 border-b border-fuchsia-900/40 backdrop-blur-md sticky top-0 z-50 bg-[#0D051A]/80">
+        <div class="max-w-6xl mx-auto flex justify-between items-center gap-3">
+            <a href="#top" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-fuchsia-600 to-purple-400 flex items-center justify-center font-black text-xl shadow-lg shadow-fuchsia-500/30">
+                    ق
                 </div>
-            </div>
+                <h1 class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-fuchsia-200 to-fuchsia-400">
+                    أم قشطوطة
+                </h1>
+            </a>
+            <span class="neon-badge text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wider animate-pulse">
+                قريباً بالدروة - همزة / تخفيض 🔥
+            </span>
         </div>
-        <header class="site-header">
-            <div class="wrap header-inner">
-                <a class="logo" href="#top">
-                    <span class="logo-ar">أم قشطوطة</span>
-                    <span class="logo-en">Om Qashtota</span>
-                </a>
-                <nav class="nav" aria-label="أقسام الصفحة">
-                    <a href="#menu">المنيو</a>
-                    <a href="#branch">الفرع</a>
-                </nav>
-            </div>
-        </header>
-    </div>
+    </header>
 
     <main id="top">
-        <section class="hero" aria-roledescription="carousel" aria-label="عرض الحلويات">
-            <div class="hero-slides">
-                <figure class="hero-slide is-active" data-caption="أم القشطوطة المانجو والبيستاشيو">
-                    <img src="images/hero/hero-qashtota.jpg" width="1376" height="768" fetchpriority="high" decoding="async" alt="علبة قشطوطة مستطيلة بالشعار، ملعقة ذهبية ترفع كيك متشرب بالحليب مع فستق وشوكولاتة تتطاير">
-                </figure>
-                <figure class="hero-slide" data-caption="الكشري الحلو المكس">
-                    <img src="images/hero/hero-koshari.jpg" width="1376" height="768" loading="lazy" decoding="async" alt="علبة كشري حلو دائرية بالشعار، طبقات كريمة وكنافة وفراولة مع رذاذ شوكولاتة">
-                </figure>
-                <figure class="hero-slide" data-caption="كيك الكنافة وسان سيباستيان الملكي">
-                    <img src="images/hero/hero-cake.jpg" width="1376" height="768" loading="lazy" decoding="async" alt="كيك كنافة دافئ يسيل بالعسل، وسان سيباستيان محروق السطح">
-                </figure>
+        <section class="max-w-4xl mx-auto text-center px-4 pt-12 pb-8">
+            <div class="inline-block neon-border px-6 py-2 rounded-full bg-fuchsia-950/40 text-fuchsia-300 text-sm font-semibold mb-6">
+                ✨ الفرع الجديد - الدروة
             </div>
-            <div class="hero-shade"></div>
-            <div class="wrap hero-content">
-                <p class="slide-chip" id="heroCaption">أم القشطوطة المانجو والبيستاشيو</p>
-                <p class="teaser">📍 قريباً الافتتاح الكبير لفرعنا الرسمي بمدينة <strong class="glow-city">الدروة (Deroua)!</strong></p>
-                <h1>عالم القشطوطة والحلويات الفاخرة بين يديك</h1>
-                <p class="hero-lead">أم قشطوطة — فرع الدروة. منيو فاخر: كشري حلو، قشطوطة، مثلجات، كونوت، وسان سيباستيان.</p>
-                <p class="countdown-label">العدّ التنازلي للافتتاح</p>
-                <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true" aria-label="العد التنازلي لافتتاح المحل">
-                    <div><strong id="cdDays">00</strong><span>يوم</span></div>
-                    <div><strong id="cdHours">00</strong><span>ساعة</span></div>
-                    <div><strong id="cdMins">00</strong><span>دقيقة</span></div>
-                    <div><strong id="cdSecs">00</strong><span>ثانية</span></div>
-                </div>
-                <div class="hero-actions">
-                    <a class="btn btn-gold" href="#menu">تصفّح المنيو</a>
-                </div>
-            </div>
-            <div class="hero-controls">
-                <button type="button" class="hero-arrow" id="heroPrev" aria-label="الشريحة السابقة">‹</button>
-                <div class="hero-dots" id="heroDots" role="tablist" aria-label="شرائح العرض"></div>
-                <button type="button" class="hero-arrow" id="heroNext" aria-label="الشريحة التالية">›</button>
-            </div>
+            <h2 class="text-4xl md:text-6xl font-black mb-4 leading-tight">
+                عالم الديسير العصري بلمسة <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-purple-300 to-amber-300">فاخرة</span>
+            </h2>
+            <p class="text-fuchsia-100/70 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                مرحباً بكم في الكاتالوج الرسمي لفرع الدروة. اكتشفوا تشكيلتنا المميزة من القشطوطة، الكشري الحلو، والحلويات الشرقية والغربية.
+            </p>
         </section>
 
-        <section class="offer-strip" id="branch">
-            <div class="wrap offer-inner">
-                <div>
-                    <p class="eyebrow">فرع الدروة الجديد</p>
-                    <h2>أم قشطوطة — فرع الدروة</h2>
-                    <p>قريباً فالدروة. منيو الحلويات الفاخرة بين يديك: كل طبق بوصفه، بالعربي والإنجليزي، وشارة تخفيض الافتتاح 20%.</p>
-                </div>
-            </div>
-        </section>
+        <nav class="max-w-6xl mx-auto px-4 pb-10 flex flex-wrap justify-center gap-2" aria-label="أقسام المنيو">
+            <a href="#koshari" class="neon-border rounded-full px-4 py-2 text-sm font-bold text-fuchsia-100 hover:bg-fuchsia-900/40">الكشري الحلو</a>
+            <a href="#qashtota" class="neon-border rounded-full px-4 py-2 text-sm font-bold text-fuchsia-100 hover:bg-fuchsia-900/40">القشطوطة</a>
+            <a href="#icecream" class="neon-border rounded-full px-4 py-2 text-sm font-bold text-fuchsia-100 hover:bg-fuchsia-900/40">المثلجات</a>
+            <a href="#conut" class="neon-border rounded-full px-4 py-2 text-sm font-bold text-fuchsia-100 hover:bg-fuchsia-900/40">الكونوت</a>
+            <a href="#cake" class="neon-border rounded-full px-4 py-2 text-sm font-bold text-fuchsia-100 hover:bg-fuchsia-900/40">الكيك</a>
+        </nav>
 
-        <section class="menu" id="menu">
-            <div class="wrap">
-                <p class="eyebrow">المنيو</p>
-                <h2>اختار اللي يفتح النفس</h2>
-                <p class="section-lead">كتالوج فرع الدروة. كل حلوى فطبقها، بالمكوّنات والتقديم، بلا أسعار اليوم.</p>
-                <nav class="cat-nav" aria-label="أقسام المنيو">
-                    <a href="#koshari">الكشري الحلو</a>
-                    <a href="#qashtota">القشطوطة</a>
-                    <a href="#icecream">المثلجات</a>
-                    <a href="#conut">الكونوت</a>
-                    <a href="#cake">الكيك</a>
-                </nav>
-                <div id="menuGrid"></div>
-            </div>
-        </section>
+        <div id="menuGrid" class="max-w-6xl mx-auto px-4 pb-16"></div>
     </main>
 
-    <footer class="site-footer" id="contact">
-        <div class="wrap footer-grid">
-            <div>
-                <p class="logo-ar">أم قشطوطة</p>
-                <p>حلويات فاخرة · فرع الدروة</p>
-                <p class="address">📍 قريباً بمدينة الدروة — Deroua, Morocco</p>
-                <nav class="socials" aria-label="شبكات التواصل">
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 4.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6zm6.1-.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1zM12 9.2A2.8 2.8 0 1 1 9.2 12 2.8 2.8 0 0 1 12 9.2z"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 3c.4 2.4 1.8 4.1 4.1 4.5v2.4c-1.4 0-2.7-.4-3.9-1.2v6.4a6.1 6.1 0 1 1-6.1-6.1c.3 0 .6 0 .9.1v2.6a3.5 3.5 0 1 0 2.5 3.4V3z"/></svg>
-                    </a>
-                </nav>
-                <p class="tiny">كتالوج المنيو · الافتتاح قريباً بمدينة الدروة</p>
-            </div>
-        </div>
+    <footer class="border-t border-fuchsia-900/40 px-4 py-8 text-center text-fuchsia-100/70">
+        <p class="font-black text-white text-xl mb-1">أم قشطوطة</p>
+        <p>حلويات فاخرة · فرع الدروة</p>
+        <p class="mt-2">📍 قريباً بمدينة الدروة — Deroua, Morocco</p>
+        <nav class="mt-4 flex justify-center gap-4" aria-label="شبكات التواصل">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-fuchsia-300 hover:text-white">Instagram</a>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" class="text-fuchsia-300 hover:text-white">TikTok</a>
+        </nav>
     </footer>
 
-    <div class="quick-actions" aria-label="تواصل سريع">
-        <a class="fab fab-ig" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 4.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6zm6.1-.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1zM12 9.2A2.8 2.8 0 1 1 9.2 12 2.8 2.8 0 0 1 12 9.2z"/></svg>
-        </a>
-        <a class="fab fab-tt" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 3c.4 2.4 1.8 4.1 4.1 4.5v2.4c-1.4 0-2.7-.4-3.9-1.2v6.4a6.1 6.1 0 1 1-6.1-6.1c.3 0 .6 0 .9.1v2.6a3.5 3.5 0 1 0 2.5 3.4V3z"/></svg>
-        </a>
-    </div>
-
-    <script src="script.js?v=35" defer></script>
+    <script src="script.js?v=36" defer></script>
 </body>
 </html>
