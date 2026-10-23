@@ -1,10 +1,15 @@
+// تاريخ مؤقت للعدّاد إلى أن يُحدَّد يوم الافتتاح الحقيقي.
+const LAUNCH_AT = new Date("2026-11-15T10:00:00+01:00");
+const DISCOUNT_CODE = "QASHTOTA20";
+
+// صورة الطبق: حط item.image ملي توصل صورة الحلوى، وإلا كيبان تصوير القسم.
 const CATEGORIES = [
     {
         id: "koshari",
         title: "قسم الكشري الحلو",
         en: "Koshari Sweet — Round Bowls",
         image: "images/koshari.jpg",
-        coming: "قريباً بالدروة - همزة / تخفيض",
+        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         blurb: "تجربة الكشري الحلو الفاخرة، طبقات من الإبداع واللذة",
         blurbFr: "Expérience Koshari Sweet Premium",
         items: [
@@ -20,7 +25,7 @@ const CATEGORIES = [
         title: "قسم القشطوطة",
         en: "Qashtouta Showcase",
         image: "images/qashtota.jpg",
-        coming: "قريباً بالدروة - همزة / تخفيض",
+        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         blurb: "كيك طري متشرب لبن 24 ساعة بكريمة بلجيكي فاخرة وإضافات على مزاجك",
         blurbFr: "Gâteau moelleux imbibé de lait 24h, nappé de crème belge premium et de vos toppings préférés",
         items: [
@@ -47,7 +52,7 @@ const CATEGORIES = [
         title: "قسم المثلجات والگلاص الفاخر",
         en: "Premium Ice Cream — Round Tubs",
         image: "images/icecream.jpg",
-        coming: "قريباً بالدروة - همزة / تخفيض",
+        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         blurb: "آيس كريم فاخر بطعم مميز وبقوام كريمي غني",
         blurbFr: "Ice Cream Premium",
         blurbLang: "en",
@@ -63,7 +68,7 @@ const CATEGORIES = [
         id: "conut",
         title: "قسم الكونوت العصري",
         en: "Conut Line",
-        coming: "قريباً بالدروة - همزة / تخفيض",
+        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         image: "images/conut.jpg",
         items: [
             { id: "c-one", image: "images/plates/c-one.jpg", name: "ذا ون", en: "The One — Caramel & Strawberry", desc: "كونوت أسطواني من عجين ملفوف مدخّن بسكر القرفة، مبطّن بكريمة كراميل مملح وشرائح فراولة طازجة." },
@@ -76,7 +81,7 @@ const CATEGORIES = [
         id: "cake",
         title: "قسم سان سيباستيان والكيك",
         en: "San Sebastian & Cakes",
-        coming: "قريباً بالدروة - همزة / تخفيض",
+        coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         image: "images/cake.jpg",
         items: [
             { id: "ck-kunafa", name: "كيك كنافة بصوص الفستق", en: "Kunafa Pistachio Cake", desc: "كيك كنافة مع صوص فستق يغمر كل قطعة." },
@@ -87,36 +92,353 @@ const CATEGORIES = [
     }
 ];
 
+const cart = new Map();
+
+function pad(n) {
+    return String(n).padStart(2, "0");
+}
+
+function tickCountdown() {
+    const now = Date.now();
+    let diff = Math.max(0, LAUNCH_AT.getTime() - now);
+    const days = Math.floor(diff / 86400000);
+    diff -= days * 86400000;
+    const hours = Math.floor(diff / 3600000);
+    diff -= hours * 3600000;
+    const mins = Math.floor(diff / 60000);
+    diff -= mins * 60000;
+    const secs = Math.floor(diff / 1000);
+    document.getElementById("cdDays").textContent = pad(days);
+    document.getElementById("cdHours").textContent = pad(hours);
+    document.getElementById("cdMins").textContent = pad(mins);
+    document.getElementById("cdSecs").textContent = pad(secs);
+}
+
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=36" : src;
+    return item.image ? src + "?v=34" : src;
+}
+
+function findItem(id) {
+    for (const cat of CATEGORIES) {
+        const item = cat.items.find((it) => it.id === id);
+        if (item) return { ...item, image: plateSrc(cat, item) };
+    }
+    return null;
+}
+
+function normalizePhone(value) {
+    let digits = String(value).replace(/[\s.-]/g, "");
+    if (digits.startsWith("+212")) digits = "0" + digits.slice(4);
+    else if (digits.startsWith("00212")) digits = "0" + digits.slice(5);
+    else if (digits.startsWith("212")) digits = "0" + digits.slice(3);
+    return digits;
+}
+
+function isMoroccanPhone(value) {
+    return /^0[5-7]\d{8}$/.test(normalizePhone(value));
 }
 
 function renderMenu() {
     const root = document.getElementById("menuGrid");
     root.innerHTML = CATEGORIES.map((cat) => `
-        <section class="mb-14" id="${cat.id}">
-            <div class="text-center mb-8">
-                <h3 class="text-3xl md:text-4xl font-black">${cat.title}</h3>
-                <p class="text-fuchsia-300/80 mt-1" lang="en">${cat.en}</p>
-                ${cat.coming ? `<p class="neon-badge inline-block mt-3 text-white px-4 py-1.5 rounded-full text-xs font-bold">${cat.coming}</p>` : ""}
-                ${cat.blurb ? `<p class="text-fuchsia-100/70 mt-3 max-w-2xl mx-auto">${cat.blurb}<span class="block text-sm mt-1" lang="${cat.blurbLang || "fr"}">${cat.blurbFr}</span></p>` : ""}
+        <section class="cat-block" id="${cat.id}">
+            <div class="cat-head">
+                <h3>${cat.title}</h3>
+                <span>${cat.en}</span>
+                ${cat.coming ? `<p class="cat-soon">${cat.coming}</p>` : ""}
+                ${cat.blurb ? `<p class="cat-blurb">${cat.blurb}<span lang="${cat.blurbLang || "fr"}">${cat.blurbFr}</span></p>` : ""}
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7">
-                ${cat.items.map((item) => `
-                    <article class="neon-border rounded-3xl bg-fuchsia-950/20 p-4 text-center">
-                        <div class="circular-img-container mx-auto mb-4">
-                            <img src="${plateSrc(cat, item)}" alt="${item.name} — ${item.en}" width="600" height="600" loading="lazy" decoding="async">
+            <div class="grid${cat.id === "qashtota" ? " grid-pack" : ""}">
+                ${cat.items.map((item) => {
+                    const qty = cart.get(item.id)?.qty || 0;
+                    const shape = cat.id === "qashtota" ? " card-pack" : (cat.id === "koshari" || cat.id === "icecream") ? " card-bowl" : "";
+                    return `
+                    <article class="card${shape}">
+                        <div class="plate">
+                            <img src="${plateSrc(cat, item)}" alt="${item.name} — ${item.en}" width="${cat.id === "qashtota" ? "800" : "600"}" height="${cat.id === "qashtota" ? "600" : "600"}" loading="lazy" decoding="async">
                         </div>
-                        <span class="neon-badge inline-block text-white px-3 py-1 rounded-full text-[11px] font-bold mb-2">قريباً بالدروة - همزة / تخفيض</span>
-                        <h4 class="text-lg font-black leading-tight">${item.name}</h4>
-                        <p class="text-fuchsia-300/80 text-xs mt-1" lang="en">${item.en}</p>
-                        <p class="text-fuchsia-100/70 text-sm mt-2 leading-relaxed">${item.desc}</p>
+                        <span class="mark">قريباً — تخفيض 20%<span lang="en" dir="ltr">Coming Soon • 20% OFF</span></span>
+                        <h4>${item.name}</h4>
+                        <p class="en" lang="en">${item.en}</p>
+                        <p class="desc">${item.desc}</p>
+                        <p class="offer-chip">قريباً — تخفيض 20%<span lang="en" dir="ltr">Coming Soon • 20% OFF</span></p>
+                        <button class="btn btn-reserve" type="button" data-add="${item.id}">${qty ? `في الحجز ×${qty}` : "قريباً — احجز تخفيض 20%<small lang=\"en\">Coming soon · 20% OFF</small>"}</button>
                     </article>
-                `).join("")}
+                `;
+                }).join("")}
             </div>
         </section>
     `).join("");
 }
 
+function cartList() {
+    return [...cart.values()];
+}
+
+function renderCart() {
+    const count = cartList().reduce((sum, line) => sum + line.qty, 0);
+    document.getElementById("cartCount").textContent = count;
+    const box = document.getElementById("cartItems");
+    if (!cart.size) {
+        box.innerHTML = "<p>السلّة فارغة.</p>";
+    } else {
+        box.innerHTML = cartList().map((line) => `
+            <div class="cart-line">
+                <div>
+                    <strong>${line.name}</strong>
+                    <div class="qty">
+                        <button type="button" data-dec="${line.id}" aria-label="إنقاص ${line.name}">−</button>
+                        <span>${line.qty}</span>
+                        <button type="button" data-inc="${line.id}" aria-label="زيادة ${line.name}">+</button>
+                    </div>
+                </div>
+                <button class="link-btn" type="button" data-remove="${line.id}">حذف</button>
+            </div>
+        `).join("");
+    }
+    const summary = document.getElementById("pickedSummary");
+    summary.classList.remove("is-warn");
+    summary.textContent = cart.size
+        ? "اختيارك: " + cartList().map((line) => `${line.name} ×${line.qty}`).join(" · ")
+        : "السلّة فارغة — زد حلويات من المنيو.";
+}
+
+function addItem(id) {
+    const item = findItem(id);
+    if (!item) return;
+    const current = cart.get(id);
+    cart.set(id, { ...item, qty: current ? current.qty + 1 : 1 });
+    renderCart();
+    renderMenu();
+    hideFormError();
+}
+
+function changeQty(id, delta) {
+    const current = cart.get(id);
+    if (!current) return;
+    const qty = current.qty + delta;
+    if (qty < 1) cart.delete(id);
+    else cart.set(id, { ...current, qty });
+    renderCart();
+    renderMenu();
+}
+
+function removeItem(id) {
+    cart.delete(id);
+    renderCart();
+    renderMenu();
+}
+
+function saveLead(lead) {
+    const key = "omQashtotaLeads";
+    try {
+        const prev = JSON.parse(localStorage.getItem(key) || "[]");
+        prev.push(lead);
+        localStorage.setItem(key, JSON.stringify(prev));
+    } catch (error) {
+        console.warn("lead storage skipped", error);
+    }
+}
+
+function showFormError(message) {
+    const box = document.getElementById("formError");
+    box.hidden = false;
+    box.textContent = message;
+}
+
+function hideFormError() {
+    const box = document.getElementById("formError");
+    box.hidden = true;
+    box.textContent = "";
+}
+
+document.getElementById("menuGrid").addEventListener("click", (event) => {
+    const id = event.target.dataset.add;
+    if (id) addItem(id);
+});
+
+document.getElementById("cartItems").addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    if (button.dataset.remove) removeItem(button.dataset.remove);
+    if (button.dataset.inc) changeQty(button.dataset.inc, 1);
+    if (button.dataset.dec) changeQty(button.dataset.dec, -1);
+});
+
+document.getElementById("openCart").addEventListener("click", () => {
+    document.getElementById("cartDrawer").hidden = false;
+});
+document.getElementById("closeCart").addEventListener("click", () => {
+    document.getElementById("cartDrawer").hidden = true;
+});
+document.getElementById("cartDrawer").addEventListener("click", (event) => {
+    if (event.target.id === "cartDrawer") event.currentTarget.hidden = true;
+});
+document.getElementById("goReserve").addEventListener("click", () => {
+    document.getElementById("cartDrawer").hidden = true;
+});
+
+const CONFIRM_COPY = "🎉 تم حجز كود الخصم (QASHTOTA20) بنجاح! يسعدنا استقبالكم قريباً في فرعنا الجديد بمدينة الدروة!";
+
+function openConfirm(items) {
+    document.getElementById("confirmText").textContent = CONFIRM_COPY;
+    document.getElementById("confirmItems").textContent = items.length
+        ? items.map((line) => `${line.name} ×${line.qty}`).join(" · ")
+        : "";
+    document.getElementById("copyState").textContent = "";
+    document.getElementById("confirmModal").hidden = false;
+}
+
+document.getElementById("leadForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "").trim();
+    const phone = normalizePhone(data.get("phone") || "");
+    hideFormError();
+    if (name.length < 2) {
+        showFormError("كتب الاسم.");
+        form.name.focus();
+        return;
+    }
+    if (!isMoroccanPhone(phone)) {
+        showFormError("دخل رقم هاتف مغربي صحيح، بحال 06XXXXXXXX.");
+        form.phone.focus();
+        return;
+    }
+    if (!cart.size) {
+        const summary = document.getElementById("pickedSummary");
+        summary.classList.add("is-warn");
+        summary.textContent = "زيد حلويات من المنيو قبل تأكيد الحجز.";
+        document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+        return;
+    }
+    const items = cartList().map((line) => ({ id: line.id, name: line.name, qty: line.qty }));
+    saveLead({
+        name,
+        phone,
+        city: "الدروة",
+        items,
+        code: DISCOUNT_CODE,
+        at: new Date().toISOString()
+    });
+    openConfirm(items);
+    form.reset();
+    cart.clear();
+    renderCart();
+    renderMenu();
+});
+
+document.getElementById("vipForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "").trim();
+    const phone = normalizePhone(data.get("phone") || "");
+    const error = document.getElementById("vipError");
+    error.hidden = true;
+    if (name.length < 2) {
+        error.hidden = false;
+        error.textContent = "كتب الاسم.";
+        form.name.focus();
+        return;
+    }
+    if (!isMoroccanPhone(phone)) {
+        error.hidden = false;
+        error.textContent = "دخل رقم هاتف مغربي صحيح، بحال 06XXXXXXXX.";
+        form.phone.focus();
+        return;
+    }
+    saveLead({
+        name,
+        phone,
+        city: "الدروة",
+        source: "vip",
+        items: [],
+        code: DISCOUNT_CODE,
+        at: new Date().toISOString()
+    });
+    openConfirm([]);
+    form.reset();
+});
+
+document.getElementById("closeModal").addEventListener("click", () => {
+    document.getElementById("confirmModal").hidden = true;
+});
+document.getElementById("confirmModal").addEventListener("click", (event) => {
+    if (event.target.id === "confirmModal") event.currentTarget.hidden = true;
+});
+document.getElementById("copyCode").addEventListener("click", async () => {
+    const state = document.getElementById("copyState");
+    try {
+        await navigator.clipboard.writeText(DISCOUNT_CODE);
+        state.textContent = "تم نسخ الكود: " + DISCOUNT_CODE;
+    } catch (error) {
+        state.textContent = "الكود: " + DISCOUNT_CODE;
+    }
+});
+document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    document.getElementById("cartDrawer").hidden = true;
+    document.getElementById("confirmModal").hidden = true;
+});
+
+function initHeroSlider() {
+    const slides = [...document.querySelectorAll(".hero-slide")];
+    const dotsBox = document.getElementById("heroDots");
+    const caption = document.getElementById("heroCaption");
+    if (!slides.length || !dotsBox || !caption) return;
+    let index = 0;
+    let timer;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    dotsBox.innerHTML = slides.map((_, n) =>
+        `<button type="button" role="tab" aria-label="شريحة ${n + 1}" data-slide="${n}"></button>`
+    ).join("");
+    const dots = [...dotsBox.querySelectorAll("button")];
+
+    function go(n) {
+        index = (n + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+        dots.forEach((dot, i) => {
+            if (i === index) dot.setAttribute("aria-current", "true");
+            else dot.removeAttribute("aria-current");
+        });
+        caption.textContent = slides[index].dataset.caption || "";
+        const img = slides[index].querySelector("img");
+        if (img && !reduce) {
+            img.style.animation = "none";
+            void img.offsetWidth;
+            img.style.animation = "";
+        }
+    }
+
+    function play() {
+        clearInterval(timer);
+        if (reduce) return;
+        timer = setInterval(() => go(index + 1), 6500);
+    }
+
+    document.getElementById("heroPrev").addEventListener("click", () => {
+        go(index - 1);
+        play();
+    });
+    document.getElementById("heroNext").addEventListener("click", () => {
+        go(index + 1);
+        play();
+    });
+    dotsBox.addEventListener("click", (event) => {
+        const btn = event.target.closest("[data-slide]");
+        if (!btn) return;
+        go(Number(btn.dataset.slide));
+        play();
+    });
+    go(0);
+    play();
+}
+
 renderMenu();
+renderCart();
+initHeroSlider();
+tickCountdown();
+setInterval(tickCountdown, 1000);
