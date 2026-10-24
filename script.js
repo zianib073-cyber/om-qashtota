@@ -29,22 +29,18 @@ const CATEGORIES = [
         blurb: "كيك طري متشرب لبن 24 ساعة بكريمة بلجيكي فاخرة وإضافات على مزاجك",
         blurbFr: "Gâteau moelleux imbibé de lait 24h, nappé de crème belge premium et de vos toppings préférés",
         items: [
-            { id: "q-family", image: "images/plates/q-family.jpg", name: "قشطوطة عائلية", en: "Family : 4 × Qashtouta", price: 145, desc: "صحن مشكل فيه أربع قشطوطات من تشكيلة المتجر. الكيك متشرب بالحليب 24 ساعة، والكريمة بلجيكية، مقدّم في صحن Sahne / Tabake." },
-            { id: "q-malaki", image: "images/plates/q-malaki.jpg", name: "قشطوطة ملكي", en: "Qashtouta Malaki", price: 45, desc: "التشكيلة الملكية: كريمة بلجيكية كثيفة وإضافات مختارة فوق الكيك الذهبي المتشرب بالحليب." },
-            { id: "q-super", image: "images/plates/q-super.jpg", name: "قشطوطة سوبر ملكي", en: "Qashtouta Super Malaki", price: 53, desc: "حجم أكبر وطبقات أغنى من الملكي: كيك طري، كريمة بلجيكية، وتقديم يملأ الطبق." },
-            { id: "q-mangue-brulee", image: "images/plates/q-mangue-brulee.jpg", name: "قشطوطة بروليه مانجو", en: "Qashtouta Mangue Brulée", price: 55, desc: "مكعبات مانجو ناضجة فوق الكريمة، وسطح سكر محروق على طريقة البروليه يتكسر تحت الملعقة." },
-            { id: "q-super-brulee", image: "images/plates/q-super-brulee.jpg", name: "قشطوطة سوبر ملكي بروليه", en: "Qashtouta Super Malaki Brulée", price: 58, desc: "السوبر ملكي بسطح كراميل محروق، قشرة رقيقة فوق كريمة بلجيكية كثيفة." },
-            { id: "q-mangue", image: "images/plates/q-mangue.jpg", name: "قشطوطة مانجا", en: "Qashtouta Mangue", price: 35, desc: "مانجو طازجة مقطعة فوق كريمة بلجيكية وكيك متشرب بالحليب طول الليل." },
-            { id: "q-oreo", image: "images/plates/q-oreo.jpg", name: "قشطوطة أوريو", en: "Qashtouta Oreo", price: 38, desc: "قطع أوريو مقرمشة وكريمة بسكويت داكنة فوق القشطوطة." },
-            { id: "q-four", image: "images/plates/q-four.jpg", name: "قشطوطة فور سيزون", en: "Qashtouta Four Season", price: 45, desc: "أربع نكهات في طبق واحد: كل ربع بإضافته، من الفستق إلى الشوكولاتة والفاكهة." },
-            { id: "q-pistachio", image: "images/plates/q-pistachio.jpg", name: "قشطوطة بيستاشيو", en: "Qashtouta Pistachio", price: 40, desc: "فستق مجروش وصوص فستق أخضر يغمر الكريمة البلجيكية." },
-            { id: "q-lotus", image: "images/plates/q-lotus.jpg", name: "قشطوطة لوتس", en: "Qashtouta Lotus", price: 38, desc: "فتات بسكويت اللوتس وصوص الكراميل فوق كيك طري وكريمة كثيفة." },
-            { id: "q-nuts", image: "images/plates/q-nuts.jpg", name: "قشطوطة مكسرات", en: "Qashtouta Mokassarat", price: 38, desc: "مكسرات محمصة: فستق، لوز وجوز، فوق الكريمة البلجيكية." },
-            { id: "q-kinder", image: "images/plates/q-kinder.jpg", name: "قشطوطة كيندر", en: "Qashtouta Kinder", price: 38, desc: "كريمة شوكولاتة كيندر ناعمة تسيل على الكيك المتشرب بالحليب." },
-            { id: "q-banana", image: "images/plates/q-banana.jpg", name: "قشطوطة موز وكراميل", en: "Qashtouta Banane & Caramel", price: 35, desc: "شرائح موز طري وكراميل دافئ يسيل على الكريمة البلجيكية." },
-            { id: "q-fraise", image: "images/plates/q-fraise.jpg", name: "قشطوطة فراولة وشوكولاتة", en: "Qashtouta Chocolat & Fraise", price: 40, desc: "فراولة طرية وشوكولاتة بلجيكية داكنة فوق الكيك والكريمة." },
+            { id: "q-sada", image: "images/plates/q-sada.jpg", name: "قشطوطة سادة", en: "Qashtouta Sada", price: 29, desc: "الأصل بلا زيادة: كيك متشرب بالحليب 24 ساعة وكريمة بلجيكية صافية." },
             { id: "q-choco", image: "images/plates/q-choco.jpg", name: "قشطوطة شوكولاتة", en: "Qashtouta Chocolate", price: 38, desc: "شوكولاتة بلجيكية كثيفة تسيل على جوانب الكيك الذهبي." },
-            { id: "q-sada", image: "images/plates/q-sada.jpg", name: "قشطوطة سادة", en: "Qashtouta Sada", price: 29, desc: "الأصل بلا زيادة: كيك متشرب بالحليب 24 ساعة وكريمة بلجيكية صافية." }
+            { id: "q-banana", image: "images/plates/q-banana.jpg", name: "قشطوطة موز وكراميل", en: "Qashtouta Banane & Caramel", price: 35, desc: "شرائح موز طري وكراميل دافئ يسيل على الكريمة البلجيكية." },
+            { id: "q-kinder", image: "images/plates/q-kinder.jpg", name: "قشطوطة كيندر", en: "Qashtouta Kinder", price: 38, desc: "كريمة شوكولاتة كيندر ناعمة تسيل على الكيك المتشرب بالحليب." },
+            { id: "q-lotus", image: "images/plates/q-lotus.jpg", name: "قشطوطة لوتس", en: "Qashtouta Lotus", price: 38, desc: "فتات بسكويت اللوتس وصوص الكراميل فوق كيك طري وكريمة كثيفة." },
+            { id: "q-oreo", image: "images/plates/q-oreo.jpg", name: "قشطوطة أوريو", en: "Qashtouta Oreo", price: 38, desc: "قطع أوريو مقرمشة وكريمة بسكويت داكنة فوق القشطوطة." },
+            { id: "q-pistachio", image: "images/plates/q-pistachio.jpg", name: "قشطوطة بيستاشيو", en: "Qashtouta Pistachio", price: 40, desc: "فستق مجروش وصوص فستق أخضر يغمر الكريمة البلجيكية." },
+            { id: "q-mangue", image: "images/plates/q-mangue.jpg", name: "قشطوطة مانجا", en: "Qashtouta Mangue", price: 35, desc: "مانجو طازجة مقطعة فوق كريمة بلجيكية وكيك متشرب بالحليب طول الليل." },
+            { id: "q-four", image: "images/plates/q-four.jpg", name: "قشطوطة فور سيزون", en: "Qashtouta Four Season", price: 45, desc: "أربع نكهات في طبق واحد: كل ربع بإضافته، من الفستق إلى الشوكولاتة والفاكهة." },
+            { id: "q-malaki", image: "images/plates/q-malaki.jpg", name: "قشطوطة ملكي", en: "Qashtouta Malaki", price: 45, desc: "التشكيلة الملكية: كريمة بلجيكية كثيفة وإضافات مختارة فوق الكيك الذهبي المتشرب بالحليب." },
+            { id: "q-super", image: "images/plates/q-super.jpg", name: "قشطوطة سوبر ملكي", en: "Qashtouta Super Malaki", price: 58, desc: "حجم أكبر وطبقات أغنى من الملكي: كيك طري، كريمة بلجيكية، وتقديم يملأ الطبق." },
+            { id: "q-family", image: "images/plates/q-family.jpg", name: "قشطوطة عائلية", en: "Family : 4 × Qashtouta", price: 145, desc: "صحن مشكل فيه أربع قشطوطات من تشكيلة المتجر. الكيك متشرب بالحليب 24 ساعة، والكريمة بلجيكية، مقدّم في صحن Sahne / Tabake." }
         ]
     },
     {
@@ -116,7 +112,7 @@ function tickCountdown() {
 
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=48" : src;
+    return item.image ? src + "?v=49" : src;
 }
 
 function findItem(id) {
