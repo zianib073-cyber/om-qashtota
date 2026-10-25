@@ -9,7 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@700;800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/hero/hero-qashtota.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="style.css?v=50">
+    <link rel="stylesheet" href="style.css?v=51">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { neon: "#D946EF", gold: "#FACC15" }
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="topbar">
@@ -103,6 +113,151 @@
                     <a href="#cake">الكيك</a>
                 </nav>
                 <div id="menuGrid"></div>
+
+                <section id="qashtota" class="mt-10 scroll-mt-52 rounded-[36px] border-[3px] border-neon bg-white/80 p-5 shadow-[0_0_22px_rgba(217,70,239,0.18)] sm:p-8" dir="rtl">
+                    <header class="mb-8 text-center">
+                        <h3 class="font-[Amiri,serif] text-3xl text-[#3B0764] sm:text-4xl">قسم القشطوطة</h3>
+                        <p class="mt-1 font-[Poppins,sans-serif] text-sm tracking-wide text-[#6B21A8]">Qashtouta</p>
+                        <p class="mt-3 inline-block rounded-full bg-[#3B0764] px-4 py-1.5 text-sm font-extrabold text-gold shadow-[0_0_14px_rgba(217,70,239,0.35)]">📍 قريباً بفرع الدروة — تخفيض 20%</p>
+                        <p class="mx-auto mt-4 max-w-2xl text-base font-bold leading-relaxed text-[#6B21A8]">كيك طري متشرب لبن 24 ساعة بكريمة بلجيكي فاخرة وإضافات على مزاجك</p>
+                        <p class="mt-1 font-[Poppins,sans-serif] text-sm italic text-[#7E22CE]">Gâteau moelleux imbibé de lait 24h, nappé de crème belge premium et de vos toppings préférés</p>
+                    </header>
+
+                    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-sada.webp?v=51" alt="قشطوطة سادة — Qashtouta Sada" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">29 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة سادة</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Sada</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">29 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-sada">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-choco.webp?v=51" alt="قشطوطة شوكولاتة — Qashtouta Chocolate" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">38 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة شوكولاتة</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Chocolate</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">38 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-choco">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-banana.webp?v=51" alt="قشطوطة موز وكراميل — Banane & Caramels" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">35 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة موز وكراميل</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Banane &amp; Caramels</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">35 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-banana">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-kinder.webp?v=51" alt="قشطوطة كيندر — Qashtouta Kinder" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">38 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة كيندر</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Kinder</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">38 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-kinder">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-lotus.webp?v=51" alt="قشطوطة لوتس — Qashtouta Lotus" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">38 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة لوتس</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Lotus</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">38 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-lotus">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-oreo.webp?v=51" alt="قشطوطة أوريو — Qashtouta Oreo" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">38 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة أوريو</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Oreo</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">38 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-oreo">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-pistachio.webp?v=51" alt="قشطوطة بيستاشيو — Qashtouta Pistachio" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">40 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة بيستاشيو</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Pistachio</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">40 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-pistachio">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-mangue.webp?v=51" alt="قشطوطة مانجو — Qashtouta Mangue" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">35 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة مانجو</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Mangue</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">35 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-mangue">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-four.webp?v=51" alt="قشطوطة فور سيزون — Qashtouta Four Season" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">45 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة فور سيزون</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Four Season</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">45 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-four">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-malaki.webp?v=51" alt="قشطوطة ملكي — Qashtouta Malaki" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">45 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة ملكي</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Malaki</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">45 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-malaki">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-super.webp?v=51" alt="قشطوطة سوبر ملكي بروليه — Qashtouta Super Malaki Brulee" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">58 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة سوبر ملكي بروليه</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Qashtouta Super Malaki Brulee</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">58 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-super-brulee">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+
+                        <article class="flex flex-col items-center rounded-3xl border border-neon/40 bg-white p-5 text-center shadow-[0_0_18px_rgba(217,70,239,0.16)]">
+                            <div class="relative mb-5 w-full overflow-hidden rounded-xl border-[3px] border-neon bg-[#FAF5FF] shadow-[0_0_20px_rgba(217,70,239,0.35)] aspect-[4/3]">
+                                <img src="images/plates/q-family.webp?v=51" alt="قشطوطة عائلية — Family 4X Qashtouta" class="absolute inset-0 h-full w-full object-cover" width="800" height="600" loading="lazy">
+                                <span class="absolute top-2.5 right-2.5 inline-flex items-baseline gap-1 rounded-full border-2 border-neon bg-gold px-3 py-1.5 font-[Poppins,sans-serif] text-base font-extrabold text-[#3B0764] shadow-[0_0_14px_rgba(217,70,239,0.45)]">145 <small class="text-[11px] font-bold">DH</small></span>
+                            </div>
+                            <h4 class="text-xl font-extrabold text-[#3B0764]">قشطوطة عائلية</h4>
+                            <p class="mt-1 font-[Poppins,sans-serif] text-xs text-[#7E22CE]">Family : 4 × Qashtouta</p>
+                            <span class="mt-3 rounded-xl border border-[#EAB308] bg-gold px-4 py-1.5 text-sm font-extrabold text-[#3B0764]">145 DH</span>
+                            <button class="btn btn-reserve mt-3 w-full" type="button" data-add="q-family">قريباً — احجز تخفيض 20%<small lang="en">Coming soon · 20% OFF</small></button>
+                        </article>
+                    </div>
+                </section>
+                <div id="menuRest"></div>
             </div>
         </section>
 
@@ -206,6 +361,6 @@
         </a>
     </div>
 
-    <script src="script.js?v=50" defer></script>
+    <script src="script.js?v=51" defer></script>
 </body>
 </html>

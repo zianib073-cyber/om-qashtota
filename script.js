@@ -31,15 +31,15 @@ const CATEGORIES = [
         items: [
             { id: "q-sada", image: "images/plates/q-sada.jpg", name: "قشطوطة سادة", en: "Qashtouta Sada", price: 29, desc: "الأصل بلا زيادة: كيك متشرب بالحليب 24 ساعة وكريمة بلجيكية صافية." },
             { id: "q-choco", image: "images/plates/q-choco.jpg", name: "قشطوطة شوكولاتة", en: "Qashtouta Chocolate", price: 38, desc: "شوكولاتة بلجيكية كثيفة تسيل على جوانب الكيك الذهبي." },
-            { id: "q-banana", image: "images/plates/q-banana.jpg", name: "قشطوطة موز وكراميل", en: "Qashtouta Banane & Caramel", price: 35, desc: "شرائح موز طري وكراميل دافئ يسيل على الكريمة البلجيكية." },
+            { id: "q-banana", image: "images/plates/q-banana.jpg", name: "قشطوطة موز وكراميل", en: "Banane & Caramels", price: 35, desc: "شرائح موز طري وكراميل دافئ يسيل على الكريمة البلجيكية." },
             { id: "q-kinder", image: "images/plates/q-kinder.jpg", name: "قشطوطة كيندر", en: "Qashtouta Kinder", price: 38, desc: "كريمة شوكولاتة كيندر ناعمة تسيل على الكيك المتشرب بالحليب." },
             { id: "q-lotus", image: "images/plates/q-lotus.jpg", name: "قشطوطة لوتس", en: "Qashtouta Lotus", price: 38, desc: "فتات بسكويت اللوتس وصوص الكراميل فوق كيك طري وكريمة كثيفة." },
             { id: "q-oreo", image: "images/plates/q-oreo.jpg", name: "قشطوطة أوريو", en: "Qashtouta Oreo", price: 38, desc: "قطع أوريو مقرمشة وكريمة بسكويت داكنة فوق القشطوطة." },
             { id: "q-pistachio", image: "images/plates/q-pistachio.jpg", name: "قشطوطة بيستاشيو", en: "Qashtouta Pistachio", price: 40, desc: "فستق مجروش وصوص فستق أخضر يغمر الكريمة البلجيكية." },
-            { id: "q-mangue", image: "images/plates/q-mangue.jpg", name: "قشطوطة مانجا", en: "Qashtouta Mangue", price: 35, desc: "مانجو طازجة مقطعة فوق كريمة بلجيكية وكيك متشرب بالحليب طول الليل." },
+            { id: "q-mangue", image: "images/plates/q-mangue.jpg", name: "قشطوطة مانجو", en: "Qashtouta Mangue", price: 35, desc: "مانجو طازجة مقطعة فوق كريمة بلجيكية وكيك متشرب بالحليب طول الليل." },
             { id: "q-four", image: "images/plates/q-four.jpg", name: "قشطوطة فور سيزون", en: "Qashtouta Four Season", price: 45, desc: "أربع نكهات في طبق واحد: كل ربع بإضافته، من الفستق إلى الشوكولاتة والفاكهة." },
             { id: "q-malaki", image: "images/plates/q-malaki.jpg", name: "قشطوطة ملكي", en: "Qashtouta Malaki", price: 45, desc: "التشكيلة الملكية: كريمة بلجيكية كثيفة وإضافات مختارة فوق الكيك الذهبي المتشرب بالحليب." },
-            { id: "q-super", image: "images/plates/q-super.jpg", name: "قشطوطة سوبر ملكي", en: "Qashtouta Super Malaki", price: 58, desc: "حجم أكبر وطبقات أغنى من الملكي: كيك طري، كريمة بلجيكية، وتقديم يملأ الطبق." },
+            { id: "q-super-brulee", image: "images/plates/q-super.jpg", name: "قشطوطة سوبر ملكي بروليه", en: "Qashtouta Super Malaki Brulee", price: 58, desc: "السوبر ملكي بسطح كراميل محروق، قشرة رقيقة فوق كريمة بلجيكية كثيفة." },
             { id: "q-family", image: "images/plates/q-family.jpg", name: "قشطوطة عائلية", en: "Family : 4 × Qashtouta", price: 145, desc: "صحن مشكل فيه أربع قشطوطات من تشكيلة المتجر. الكيك متشرب بالحليب 24 ساعة، والكريمة بلجيكية، مقدّم في صحن Sahne / Tabake." }
         ]
     },
@@ -112,7 +112,7 @@ function tickCountdown() {
 
 function plateSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=50" : src;
+    return item.image ? src + "?v=51" : src;
 }
 
 function findItem(id) {
@@ -136,8 +136,8 @@ function isMoroccanPhone(value) {
 }
 
 function renderMenu() {
-    const root = document.getElementById("menuGrid");
-    root.innerHTML = CATEGORIES.map((cat) => `
+    const blocks = CATEGORIES.filter((cat) => cat.id !== "qashtota");
+    const markup = (list) => list.map((cat) => `
         <section class="cat-block" id="${cat.id}">
             <div class="cat-head">
                 <h3>${cat.title}</h3>
@@ -168,6 +168,17 @@ function renderMenu() {
             </div>
         </section>
     `).join("");
+    document.getElementById("menuGrid").innerHTML = markup(blocks.filter((cat) => cat.id === "koshari"));
+    document.getElementById("menuRest").innerHTML = markup(blocks.filter((cat) => cat.id !== "koshari"));
+}
+
+function syncQashtotaButtons() {
+    document.querySelectorAll("#qashtota [data-add]").forEach((btn) => {
+        const qty = cart.get(btn.dataset.add)?.qty || 0;
+        btn.innerHTML = qty
+            ? `في الحجز ×${qty}`
+            : `قريباً — احجز تخفيض 20%<small class="mt-0.5 block text-[11px] font-semibold tracking-wide opacity-70">Coming soon · 20% OFF</small>`;
+    });
 }
 
 function cartList() {
@@ -209,6 +220,7 @@ function addItem(id) {
     cart.set(id, { ...item, qty: current ? current.qty + 1 : 1 });
     renderCart();
     renderMenu();
+    syncQashtotaButtons();
     hideFormError();
 }
 
@@ -220,12 +232,14 @@ function changeQty(id, delta) {
     else cart.set(id, { ...current, qty });
     renderCart();
     renderMenu();
+    syncQashtotaButtons();
 }
 
 function removeItem(id) {
     cart.delete(id);
     renderCart();
     renderMenu();
+    syncQashtotaButtons();
 }
 
 function saveLead(lead) {
@@ -251,9 +265,9 @@ function hideFormError() {
     box.textContent = "";
 }
 
-document.getElementById("menuGrid").addEventListener("click", (event) => {
-    const id = event.target.dataset.add;
-    if (id) addItem(id);
+document.getElementById("menu").addEventListener("click", (event) => {
+    const btn = event.target.closest("[data-add]");
+    if (btn) addItem(btn.dataset.add);
 });
 
 document.getElementById("cartItems").addEventListener("click", (event) => {
@@ -326,6 +340,7 @@ document.getElementById("leadForm").addEventListener("submit", (event) => {
     cart.clear();
     renderCart();
     renderMenu();
+    syncQashtotaButtons();
 });
 
 document.getElementById("vipForm").addEventListener("submit", (event) => {
@@ -436,6 +451,7 @@ function initHeroSlider() {
 }
 
 renderMenu();
+syncQashtotaButtons();
 renderCart();
 initHeroSlider();
 tickCountdown();
