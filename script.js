@@ -80,10 +80,10 @@ const CATEGORIES = [
         coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         image: "images/cake.jpg",
         items: [
-            { id: "ck-kunafa", name: "كيك كنافة بصوص الفستق", en: "Kunafa Pistachio Cake", desc: "كيك كنافة مع صوص فستق يغمر كل قطعة." },
-            { id: "ck-seb-choco", name: "تري سيباستيان شوكولاتة", en: "San Sebastian Chocolate", desc: "سان سيباستيان محروق السطح بنكهة الشوكولاتة." },
-            { id: "ck-seb-pist", name: "تري سيباستيان فستق", en: "San Sebastian Pistachio", desc: "سان سيباستيان كريمي بقلب فستق." },
-            { id: "ck-seb-lotus", name: "تري سيباستيان لوتس", en: "San Sebastian Lotus", desc: "سان سيباستيان بصوص اللوتس الكراميل." }
+            { id: "ck-kunafa", image: "images/plates/ck-kunafa.jpg", name: "كيك كنافة بصوص الفستق", en: "Kunafa Pistachio Cake", desc: "كيك كنافة مع صوص فستق يغمر كل قطعة." },
+            { id: "ck-seb-choco", image: "images/plates/ck-seb-choco.jpg", name: "تري سيباستيان شوكولاتة", en: "San Sebastian Chocolate", desc: "سان سيباستيان محروق السطح بنكهة الشوكولاتة." },
+            { id: "ck-seb-pist", image: "images/plates/ck-seb-pist.jpg", name: "تري سيباستيان فستق", en: "San Sebastian Pistachio", desc: "سان سيباستيان كريمي بقلب فستق." },
+            { id: "ck-seb-lotus", image: "images/plates/ck-seb-lotus.jpg", name: "تري سيباستيان لوتس", en: "San Sebastian Lotus", desc: "سان سيباستيان بصوص اللوتس الكراميل." }
         ]
     }
 ];
@@ -112,7 +112,7 @@ function tickCountdown() {
 
 function packSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=53" : src;
+    return item.image ? src + "?v=54" : src;
 }
 
 function findItem(id) {
