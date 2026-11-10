@@ -139,15 +139,15 @@ a { color: inherit; text-decoration: none; }
 }
 .logo-3d {
     display: block;
-    height: 86px;
-    width: 86px;
+    height: 56px;
+    width: 56px;
     object-fit: contain;
-    filter: drop-shadow(0 0 18px rgba(217, 70, 239, 0.45));
+    filter: drop-shadow(0 0 12px rgba(217, 70, 239, 0.4));
 }
 .logo-3d-sm {
-    height: 108px;
-    width: 108px;
-    filter: drop-shadow(0 0 14px rgba(217, 70, 239, 0.28));
+    height: 64px;
+    width: 64px;
+    filter: drop-shadow(0 0 10px rgba(217, 70, 239, 0.25));
 }
 .footer-brand {
     display: flex;
@@ -840,8 +840,8 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
     }
     .nav { font-size: 1rem; }
     .logo-3d {
-        height: 118px;
-        width: 118px;
+        height: 72px;
+        width: 72px;
     }
     .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .hero-content { padding-top: 56px; }
