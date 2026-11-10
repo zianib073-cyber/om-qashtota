@@ -2,18 +2,18 @@
 const LAUNCH_AT = new Date("2026-11-15T10:00:00+01:00");
 const DISCOUNT_CODE = "QASHTOTA20";
 
-// صورة الطبق: حط item.image ملي توصل صورة الحلوى، وإلا كيبان تصوير القسم.
+// صورة العلبة: حط item.image ملي توصل صورة الحلوى، وإلا كيبان تصوير القسم.
 const CATEGORIES = [
     {
         id: "koshari",
         title: "قسم الكشري الحلو",
-        en: "Sahne / Tabake — Mixed Dessert Plate",
+        en: "Koshari Sweet — Round Bowls",
         image: "images/koshari.jpg",
         coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
-        blurb: "صحن الحلويات المشكل الذي يضم جميع أنواع الحلويات المتوفرة في المتجر",
+        blurb: "تجربة الكشري الحلو الفاخرة، طبقات من الإبداع واللذة في علبة دائرية بالشعار",
         blurbFr: "Expérience Koshari Sweet Premium",
         items: [
-            { id: "k-mix", image: "images/plates/k-mix.jpg", name: "كشري مكس", en: "Koshari Mix", desc: "طبقات كشري حلو متداخلة: قشطة، مكسرات وصلصات، في صحن Sahne / Tabake." },
+            { id: "k-mix", image: "images/plates/k-mix.jpg", name: "كشري مكس", en: "Koshari Mix", desc: "طبقات كشري حلو متداخلة: قشطة، مكسرات وصلصات، في علبة دائرية بالشعار." },
             { id: "k-pistachio", image: "images/plates/k-pistachio.jpg", name: "كشري فستق كريمي", en: "Koshari Pistachio Cream", desc: "شعيرية مقرمشة مع كريمة فستق كثيفة تغمر الطبقات." },
             { id: "k-mango", image: "images/plates/k-mango.jpg", name: "كشري مانجو", en: "Koshari Mango", desc: "مكعبات مانجو طازجة فوق طبقات الكشري الحلو والكريمة." },
             { id: "k-oreo", image: "images/plates/k-oreo.jpg", name: "كشري أوريو بالشوكولاتة", en: "Koshari Oreo & Chocolate", desc: "فتات أوريو وكريمة حليب، مع شوكولاتة بلجيكية تسيل على طبقات الكشري." },
@@ -37,27 +37,27 @@ const CATEGORIES = [
             { id: "q-oreo", image: "images/plates/q-oreo.jpg", name: "قشطوطة أوريو", en: "Qashtouta Oreo", price: 38, desc: "قطع أوريو مقرمشة وكريمة بسكويت داكنة فوق القشطوطة." },
             { id: "q-pistachio", image: "images/plates/q-pistachio.jpg", name: "قشطوطة بيستاشيو", en: "Qashtouta Pistachio", price: 40, desc: "فستق مجروش وصوص فستق أخضر يغمر الكريمة البلجيكية." },
             { id: "q-mangue", image: "images/plates/q-mangue.jpg", name: "قشطوطة مانجو", en: "Qashtouta Mangue", price: 35, desc: "مانجو طازجة مقطعة فوق كريمة بلجيكية وكيك متشرب بالحليب طول الليل." },
-            { id: "q-four", image: "images/plates/q-four.jpg", name: "قشطوطة فور سيزون", en: "Qashtouta Four Season", price: 45, desc: "أربع نكهات في طبق واحد: كل ربع بإضافته، من الفستق إلى الشوكولاتة والفاكهة." },
+            { id: "q-four", image: "images/plates/q-four.jpg", name: "قشطوطة فور سيزون", en: "Qashtouta Four Season", price: 45, desc: "أربع نكهات في علبة واحدة: كل ربع بإضافته، من الفستق إلى الشوكولاتة والفاكهة." },
             { id: "q-malaki", image: "images/plates/q-malaki.jpg", name: "قشطوطة ملكي", en: "Qashtouta Malaki", price: 45, desc: "التشكيلة الملكية: كريمة بلجيكية كثيفة وإضافات مختارة فوق الكيك الذهبي المتشرب بالحليب." },
-            { id: "q-super-brulee", image: "images/plates/q-super.jpg", name: "قشطوطة سوبر ملكي بروليه", en: "Qashtouta Super Malaki Brulee", price: 58, desc: "السوبر ملكي بسطح كراميل محروق، قشرة رقيقة فوق كريمة بلجيكية كثيفة." },
-            { id: "q-family", image: "images/plates/q-family.jpg", name: "قشطوطة عائلية", en: "Family : 4 × Qashtouta", price: 145, desc: "صحن مشكل فيه أربع قشطوطات من تشكيلة المتجر. الكيك متشرب بالحليب 24 ساعة، والكريمة بلجيكية، مقدّم في صحن Sahne / Tabake." }
+            { id: "q-super-brulee", image: "images/plates/q-super-brulee.jpg", name: "قشطوطة سوبر ملكي بروليه", en: "Qashtouta Super Malaki Brulee", price: 58, desc: "السوبر ملكي بسطح كراميل محروق، قشرة رقيقة فوق كريمة بلجيكية كثيفة، في علبة مستطيلة بالشعار." },
+            { id: "q-family", image: "images/plates/q-family.jpg", name: "قشطوطة عائلية", en: "Family : 4 × Qashtouta", price: 145, desc: "علبة عائلية فيها أربع قشطوطات من تشكيلة المتجر. الكيك متشرب بالحليب 24 ساعة، والكريمة بلجيكية، مقدّمة في علبة مستطيلة بالشعار." }
         ]
     },
     {
         id: "icecream",
         title: "قسم المثلجات والگلاص الفاخر",
-        en: "Sahne / Tabake — Ice Cream Plate",
+        en: "Premium Ice Cream — Round Tubs",
         image: "images/icecream.jpg",
         coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
-        blurb: "آيس كريم فاخر بطعم مميز وبقوام كريمي غني",
+        blurb: "آيس كريم فاخر بطعم مميز وبقوام كريمي غني، في علبة دائرية بالشعار",
         blurbFr: "Ice Cream Premium",
         blurbLang: "en",
         items: [
-            { id: "i-pistachio", image: "images/plates/i-pistachio.jpg", name: "گلاص فستق بصوص غني", en: "Pistachio Ice Cream", desc: "سكوب فستق كثيف وصوص فستق غني، في صحن Sahne / Tabake." },
-            { id: "i-lotus", image: "images/plates/i-lotus.jpg", name: "گلاص لوتس", en: "Lotus Ice Cream", desc: "گلاص لوتس كريمي مع فتات البسكويت وصوص الكراميل، في صحن Sahne / Tabake." },
-            { id: "i-mango", image: "images/plates/i-mango.jpg", name: "گلاص مانجو مع صوص غني", en: "Mango Ice Cream", desc: "سكوبات مانجو مدوّرة وصوص ذهبي، في صحن Sahne / Tabake." },
-            { id: "i-cheesecake", image: "images/plates/i-cheesecake.jpg", name: "گلاص تشيزكيك", en: "Cheesecake Ice Cream", desc: "قوام تشيزكيك كريمي بارد، في صحن Sahne / Tabake." },
-            { id: "i-caramel", image: "images/plates/i-caramel.jpg", name: "گلاص حليب وكراميل", en: "Milk & Caramel Ice Cream", desc: "گلاص حليب ناعم وكراميل دافئ، في صحن Sahne / Tabake." }
+            { id: "i-pistachio", image: "images/plates/i-pistachio.jpg", name: "گلاص فستق بصوص غني", en: "Pistachio Ice Cream", desc: "سكوب فستق كثيف وصوص فستق غني، داخل العلبة الدائرية بالشعار." },
+            { id: "i-lotus", image: "images/plates/i-lotus.jpg", name: "گلاص لوتس", en: "Lotus Ice Cream", desc: "گلاص لوتس كريمي مع فتات البسكويت وصوص الكراميل في العلبة الدائرية." },
+            { id: "i-mango", image: "images/plates/i-mango.jpg", name: "گلاص مانجو مع صوص غني", en: "Mango Ice Cream", desc: "سكوبات مانجو مدوّرة وصوص ذهبي، في العلبة الدائرية." },
+            { id: "i-cheesecake", image: "images/plates/i-cheesecake.jpg", name: "گلاص تشيزكيك", en: "Cheesecake Ice Cream", desc: "قوام تشيزكيك كريمي بارد، مقدّم في نفس العلبة الدائرية." },
+            { id: "i-caramel", image: "images/plates/i-caramel.jpg", name: "گلاص حليب وكراميل", en: "Milk & Caramel Ice Cream", desc: "گلاص حليب ناعم وكراميل دافئ، في العلبة الدائرية." }
         ]
     },
     {
@@ -110,15 +110,15 @@ function tickCountdown() {
     document.getElementById("cdSecs").textContent = pad(secs);
 }
 
-function plateSrc(cat, item) {
+function packSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=51" : src;
+    return item.image ? src + "?v=52" : src;
 }
 
 function findItem(id) {
     for (const cat of CATEGORIES) {
         const item = cat.items.find((it) => it.id === id);
-        if (item) return { ...item, image: plateSrc(cat, item) };
+        if (item) return { ...item, image: packSrc(cat, item) };
     }
     return null;
 }
@@ -151,8 +151,8 @@ function renderMenu() {
                     const shape = cat.id === "qashtota" ? " card-pack" : (cat.id === "koshari" || cat.id === "icecream") ? " card-bowl" : "";
                     return `
                     <article class="card neon-border${shape}">
-                        <div class="plate circular-img-container">
-                            <img src="${plateSrc(cat, item)}" alt="${item.name} — ${item.en}" width="${cat.id === "qashtota" ? "800" : "600"}" height="${cat.id === "qashtota" ? "600" : "600"}" loading="lazy" decoding="async">
+                        <div class="pack circular-img-container">
+                            <img src="${packSrc(cat, item)}" alt="${item.name} — ${item.en}" width="${cat.id === "qashtota" ? "800" : "600"}" height="${cat.id === "qashtota" ? "600" : "600"}" loading="lazy" decoding="async">
                             ${item.price ? `<span class="price-badge">${item.price} <small>DH</small></span>` : ""}
                         </div>
                         <h4>${item.name}</h4>
