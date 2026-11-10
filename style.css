@@ -113,10 +113,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 .site-header {
-    background: rgba(253, 244, 255, 0.94);
-    color: var(--heading);
+    background: linear-gradient(180deg, #16081f 0%, #0b0612 100%);
+    color: #F5D0FE;
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(217, 70, 239, 0.35);
+    border-bottom: 1px solid rgba(217, 70, 239, 0.28);
+    box-shadow: 0 8px 28px rgba(217, 70, 239, 0.12);
 }
 .header-inner {
     display: grid;
@@ -131,19 +132,30 @@ a { color: inherit; text-decoration: none; }
 .logo { grid-area: logo; }
 .cart-btn { grid-area: cart; }
 .nav { grid-area: nav; }
-.logo { display: grid; line-height: 1.15; }
-.logo-ar {
-    font-family: "Amiri", serif;
-    font-size: 1.55rem;
-    font-weight: 700;
-    color: var(--heading);
+.logo {
+    display: flex;
+    align-items: center;
+    min-width: 0;
 }
-.logo-en {
-    font-family: "Poppins", sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    opacity: 0.75;
-    color: var(--lavender);
+.logo-3d {
+    display: block;
+    height: 78px;
+    width: auto;
+    max-width: min(300px, 68vw);
+    object-fit: cover;
+    object-position: center;
+    filter: drop-shadow(0 0 22px rgba(217, 70, 239, 0.5));
+}
+.logo-3d-sm {
+    height: 96px;
+    max-width: min(340px, 86vw);
+    filter: drop-shadow(0 0 16px rgba(217, 70, 239, 0.3));
+}
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px;
 }
 .nav {
     display: flex;
@@ -152,7 +164,7 @@ a { color: inherit; text-decoration: none; }
     gap: 8px 16px;
     font-weight: 700;
     font-size: 0.92rem;
-    color: var(--navy);
+    color: #F3E8FF;
 }
 .nav a:hover { color: var(--neon); }
 
@@ -829,6 +841,10 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
         grid-template-areas: "logo nav cart";
     }
     .nav { font-size: 1rem; }
+    .logo-3d {
+        height: 108px;
+        max-width: 420px;
+    }
     .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .hero-content { padding-top: 56px; }
     .offer-inner, .reserve-grid, .footer-grid {
