@@ -29,18 +29,18 @@ const CATEGORIES = [
         blurb: "كيك طري متشرب لبن 24 ساعة بكريمة بلجيكي فاخرة وإضافات على مزاجك",
         blurbFr: "Gâteau moelleux imbibé de lait 24h, nappé de crème belge premium et de vos toppings préférés",
         items: [
-            { id: "q-sada", image: "images/plates/q-sada.jpg", name: "قشطوطة سادة", en: "Qashtouta Sada", price: 29, desc: "الأصل بلا زيادة: كيك متشرب بالحليب 24 ساعة وكريمة بلجيكية صافية." },
-            { id: "q-choco", image: "images/plates/q-choco.jpg", name: "قشطوطة شوكولاتة", en: "Qashtouta Chocolate", price: 38, desc: "شوكولاتة بلجيكية كثيفة تسيل على جوانب الكيك الذهبي." },
-            { id: "q-banana", image: "images/plates/q-banana.jpg", name: "قشطوطة موز وكراميل", en: "Banane & Caramels", price: 35, desc: "شرائح موز طري وكراميل دافئ يسيل على الكريمة البلجيكية." },
-            { id: "q-kinder", image: "images/plates/q-kinder.jpg", name: "قشطوطة كيندر", en: "Qashtouta Kinder", price: 38, desc: "كريمة شوكولاتة كيندر ناعمة تسيل على الكيك المتشرب بالحليب." },
-            { id: "q-lotus", image: "images/plates/q-lotus.jpg", name: "قشطوطة لوتس", en: "Qashtouta Lotus", price: 38, desc: "فتات بسكويت اللوتس وصوص الكراميل فوق كيك طري وكريمة كثيفة." },
-            { id: "q-oreo", image: "images/plates/q-oreo.jpg", name: "قشطوطة أوريو", en: "Qashtouta Oreo", price: 38, desc: "قطع أوريو مقرمشة وكريمة بسكويت داكنة فوق القشطوطة." },
-            { id: "q-pistachio", image: "images/plates/q-pistachio.jpg", name: "قشطوطة بيستاشيو", en: "Qashtouta Pistachio", price: 40, desc: "فستق مجروش وصوص فستق أخضر يغمر الكريمة البلجيكية." },
-            { id: "q-mangue", image: "images/plates/q-mangue.jpg", name: "قشطوطة مانجو", en: "Qashtouta Mangue", price: 35, desc: "مانجو طازجة مقطعة فوق كريمة بلجيكية وكيك متشرب بالحليب طول الليل." },
-            { id: "q-four", image: "images/plates/q-four.jpg", name: "قشطوطة فور سيزون", en: "Qashtouta Four Season", price: 45, desc: "أربع نكهات في علبة واحدة: كل ربع بإضافته، من الفستق إلى الشوكولاتة والفاكهة." },
-            { id: "q-malaki", image: "images/plates/q-malaki.jpg", name: "قشطوطة ملكي", en: "Qashtouta Malaki", price: 45, desc: "التشكيلة الملكية: كريمة بلجيكية كثيفة وإضافات مختارة فوق الكيك الذهبي المتشرب بالحليب." },
-            { id: "q-super-brulee", image: "images/plates/q-super-brulee.jpg", name: "قشطوطة سوبر ملكي بروليه", en: "Qashtouta Super Malaki Brulee", price: 58, desc: "السوبر ملكي بسطح كراميل محروق، قشرة رقيقة فوق كريمة بلجيكية كثيفة، في علبة مستطيلة بالشعار." },
-            { id: "q-family", image: "images/plates/q-family.jpg", name: "قشطوطة عائلية", en: "Family : 4 × Qashtouta", price: 145, desc: "علبة عائلية فيها أربع قشطوطات من تشكيلة المتجر. الكيك متشرب بالحليب 24 ساعة، والكريمة بلجيكية، مقدّمة في علبة مستطيلة بالشعار." }
+            { id: "q-sada", image: "images/plates/q-sada.jpg", name: "قشطوطة سادة", en: "Qashtouta Sada", desc: "الأصل بلا زيادة: كيك متشرب بالحليب 24 ساعة وكريمة بلجيكية صافية." },
+            { id: "q-choco", image: "images/plates/q-choco.jpg", name: "قشطوطة شوكولاتة", en: "Qashtouta Chocolate", desc: "شوكولاتة بلجيكية كثيفة تسيل على جوانب الكيك الذهبي." },
+            { id: "q-banana", image: "images/plates/q-banana.jpg", name: "قشطوطة موز وكراميل", en: "Banane & Caramels", desc: "شرائح موز طري وكراميل دافئ يسيل على الكريمة البلجيكية." },
+            { id: "q-kinder", image: "images/plates/q-kinder.jpg", name: "قشطوطة كيندر", en: "Qashtouta Kinder", desc: "كريمة شوكولاتة كيندر ناعمة تسيل على الكيك المتشرب بالحليب." },
+            { id: "q-lotus", image: "images/plates/q-lotus.jpg", name: "قشطوطة لوتس", en: "Qashtouta Lotus", desc: "فتات بسكويت اللوتس وصوص الكراميل فوق كيك طري وكريمة كثيفة." },
+            { id: "q-oreo", image: "images/plates/q-oreo.jpg", name: "قشطوطة أوريو", en: "Qashtouta Oreo", desc: "قطع أوريو مقرمشة وكريمة بسكويت داكنة فوق القشطوطة." },
+            { id: "q-pistachio", image: "images/plates/q-pistachio.jpg", name: "قشطوطة بيستاشيو", en: "Qashtouta Pistachio", desc: "فستق مجروش وصوص فستق أخضر يغمر الكريمة البلجيكية." },
+            { id: "q-mangue", image: "images/plates/q-mangue.jpg", name: "قشطوطة مانجو", en: "Qashtouta Mangue", desc: "مانجو طازجة مقطعة فوق كريمة بلجيكية وكيك متشرب بالحليب طول الليل." },
+            { id: "q-four", image: "images/plates/q-four.jpg", name: "قشطوطة فور سيزون", en: "Qashtouta Four Season", desc: "أربع نكهات في علبة واحدة: كل ربع بإضافته، من الفستق إلى الشوكولاتة والفاكهة." },
+            { id: "q-malaki", image: "images/plates/q-malaki.jpg", name: "قشطوطة ملكي", en: "Qashtouta Malaki", desc: "التشكيلة الملكية: كريمة بلجيكية كثيفة وإضافات مختارة فوق الكيك الذهبي المتشرب بالحليب." },
+            { id: "q-super-brulee", image: "images/plates/q-super-brulee.jpg", name: "قشطوطة سوبر ملكي بروليه", en: "Qashtouta Super Malaki Brulee", desc: "السوبر ملكي بسطح كراميل محروق، قشرة رقيقة فوق كريمة بلجيكية كثيفة، في علبة مستطيلة بالشعار." },
+            { id: "q-family", image: "images/plates/q-family.jpg", name: "قشطوطة عائلية", en: "Family : 4 × Qashtouta", desc: "علبة عائلية فيها أربع قشطوطات من تشكيلة المتجر. الكيك متشرب بالحليب 24 ساعة، والكريمة بلجيكية، مقدّمة في علبة مستطيلة بالشعار." }
         ]
     },
     {
@@ -112,7 +112,7 @@ function tickCountdown() {
 
 function packSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=52" : src;
+    return item.image ? src + "?v=53" : src;
 }
 
 function findItem(id) {
@@ -153,13 +153,12 @@ function renderMenu() {
                     <article class="card neon-border${shape}">
                         <div class="pack circular-img-container">
                             <img src="${packSrc(cat, item)}" alt="${item.name} — ${item.en}" width="${cat.id === "qashtota" ? "800" : "600"}" height="${cat.id === "qashtota" ? "600" : "600"}" loading="lazy" decoding="async">
-                            ${item.price ? `<span class="price-badge">${item.price} <small>DH</small></span>` : ""}
                         </div>
                         <h4>${item.name}</h4>
                         <p class="en" lang="en">${item.en}</p>
                         <p class="desc">${item.desc}</p>
                         <div class="card-foot">
-                            ${item.price ? `<span class="featured-badge">${item.price} DH</span>` : `<span class="featured-badge">مميز وجديد ✨</span>`}
+                            <span class="featured-badge">مميز وجديد ✨</span>
                             <button class="btn btn-reserve" type="button" data-add="${item.id}">${qty ? `في الحجز ×${qty}` : "قريباً — احجز تخفيض 20%<small lang=\"en\">Coming soon · 20% OFF</small>"}</button>
                         </div>
                     </article>
