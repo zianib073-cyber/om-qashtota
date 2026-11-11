@@ -1,5 +1,3 @@
-const DISCOUNT_CODE = "QASHTOTA20";
-
 // صورة العلبة: حط item.image ملي توصل صورة الحلوى، وإلا كيبان تصوير القسم.
 const CATEGORIES = [
     {
@@ -86,31 +84,9 @@ const CATEGORIES = [
     }
 ];
 
-const cart = new Map();
-
 function packSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
     return item.image ? src + "?v=66" : src;
-}
-
-function findItem(id) {
-    for (const cat of CATEGORIES) {
-        const item = cat.items.find((it) => it.id === id);
-        if (item) return { ...item, image: packSrc(cat, item) };
-    }
-    return null;
-}
-
-function normalizePhone(value) {
-    let digits = String(value).replace(/[\s.-]/g, "");
-    if (digits.startsWith("+212")) digits = "0" + digits.slice(4);
-    else if (digits.startsWith("00212")) digits = "0" + digits.slice(5);
-    else if (digits.startsWith("212")) digits = "0" + digits.slice(3);
-    return digits;
-}
-
-function isMoroccanPhone(value) {
-    return /^0[5-7]\d{8}$/.test(normalizePhone(value));
 }
 
 function renderMenu() {
@@ -125,7 +101,6 @@ function renderMenu() {
             </div>
             <div class="grid${cat.id === "qashtota" ? " grid-pack" : ""}">
                 ${cat.items.map((item) => {
-                    const qty = cart.get(item.id)?.qty || 0;
                     const shape = cat.id === "qashtota" ? " card-pack" : (cat.id === "koshari" || cat.id === "icecream") ? " card-bowl" : "";
                     return `
                     <article class="card neon-border${shape}">
@@ -137,7 +112,7 @@ function renderMenu() {
                         <p class="desc">${item.desc}</p>
                         <div class="card-foot">
                             <span class="featured-badge">مميز وجديد ✨</span>
-                            <button class="btn btn-reserve" type="button" data-add="${item.id}">${qty ? `في الحجز ×${qty}` : "قريباً — احجز تخفيض 20%<small lang=\"en\">Coming soon · 20% OFF</small>"}</button>
+                            <span class="promo-chip">خصم 20% عند الافتتاح</span>
                         </div>
                     </article>
                 `;
@@ -148,231 +123,6 @@ function renderMenu() {
     document.getElementById("menuGrid").innerHTML = markup(blocks.filter((cat) => cat.id === "koshari"));
     document.getElementById("menuRest").innerHTML = markup(blocks.filter((cat) => cat.id !== "koshari"));
 }
-
-function syncQashtotaButtons() {
-    document.querySelectorAll("#qashtota [data-add]").forEach((btn) => {
-        const qty = cart.get(btn.dataset.add)?.qty || 0;
-        btn.innerHTML = qty
-            ? `في الحجز ×${qty}`
-            : `قريباً — احجز تخفيض 20%<small class="mt-0.5 block text-[11px] font-semibold tracking-wide opacity-70">Coming soon · 20% OFF</small>`;
-    });
-}
-
-function cartList() {
-    return [...cart.values()];
-}
-
-function renderCart() {
-    const count = cartList().reduce((sum, line) => sum + line.qty, 0);
-    document.getElementById("cartCount").textContent = count;
-    const box = document.getElementById("cartItems");
-    if (!cart.size) {
-        box.innerHTML = "<p>السلّة فارغة.</p>";
-    } else {
-        box.innerHTML = cartList().map((line) => `
-            <div class="cart-line">
-                <div>
-                    <strong>${line.name}</strong>
-                    <div class="qty">
-                        <button type="button" data-dec="${line.id}" aria-label="إنقاص ${line.name}">−</button>
-                        <span>${line.qty}</span>
-                        <button type="button" data-inc="${line.id}" aria-label="زيادة ${line.name}">+</button>
-                    </div>
-                </div>
-                <button class="link-btn" type="button" data-remove="${line.id}">حذف</button>
-            </div>
-        `).join("");
-    }
-    const summary = document.getElementById("pickedSummary");
-    summary.classList.remove("is-warn");
-    summary.textContent = cart.size
-        ? "اختيارك: " + cartList().map((line) => `${line.name} ×${line.qty}`).join(" · ")
-        : "السلّة فارغة — زد حلويات من المنيو.";
-}
-
-function addItem(id) {
-    const item = findItem(id);
-    if (!item) return;
-    const current = cart.get(id);
-    cart.set(id, { ...item, qty: current ? current.qty + 1 : 1 });
-    renderCart();
-    renderMenu();
-    syncQashtotaButtons();
-    hideFormError();
-}
-
-function changeQty(id, delta) {
-    const current = cart.get(id);
-    if (!current) return;
-    const qty = current.qty + delta;
-    if (qty < 1) cart.delete(id);
-    else cart.set(id, { ...current, qty });
-    renderCart();
-    renderMenu();
-    syncQashtotaButtons();
-}
-
-function removeItem(id) {
-    cart.delete(id);
-    renderCart();
-    renderMenu();
-    syncQashtotaButtons();
-}
-
-function saveLead(lead) {
-    const key = "omQashtotaLeads";
-    try {
-        const prev = JSON.parse(localStorage.getItem(key) || "[]");
-        prev.push(lead);
-        localStorage.setItem(key, JSON.stringify(prev));
-    } catch (error) {
-        console.warn("lead storage skipped", error);
-    }
-}
-
-function showFormError(message) {
-    const box = document.getElementById("formError");
-    box.hidden = false;
-    box.textContent = message;
-}
-
-function hideFormError() {
-    const box = document.getElementById("formError");
-    box.hidden = true;
-    box.textContent = "";
-}
-
-document.getElementById("menu").addEventListener("click", (event) => {
-    const btn = event.target.closest("[data-add]");
-    if (btn) addItem(btn.dataset.add);
-});
-
-document.getElementById("cartItems").addEventListener("click", (event) => {
-    const button = event.target.closest("button");
-    if (!button) return;
-    if (button.dataset.remove) removeItem(button.dataset.remove);
-    if (button.dataset.inc) changeQty(button.dataset.inc, 1);
-    if (button.dataset.dec) changeQty(button.dataset.dec, -1);
-});
-
-document.getElementById("openCart").addEventListener("click", () => {
-    document.getElementById("cartDrawer").hidden = false;
-});
-document.getElementById("closeCart").addEventListener("click", () => {
-    document.getElementById("cartDrawer").hidden = true;
-});
-document.getElementById("cartDrawer").addEventListener("click", (event) => {
-    if (event.target.id === "cartDrawer") event.currentTarget.hidden = true;
-});
-document.getElementById("goReserve").addEventListener("click", () => {
-    document.getElementById("cartDrawer").hidden = true;
-});
-
-const CONFIRM_COPY = "🎉 تم حجز كود الخصم (QASHTOTA20) بنجاح! يسعدنا استقبالكم قريباً في فرعنا الجديد بمدينة الدروة!";
-
-function openConfirm(items) {
-    document.getElementById("confirmText").textContent = CONFIRM_COPY;
-    document.getElementById("confirmItems").textContent = items.length
-        ? items.map((line) => `${line.name} ×${line.qty}`).join(" · ")
-        : "";
-    document.getElementById("copyState").textContent = "";
-    document.getElementById("confirmModal").hidden = false;
-}
-
-document.getElementById("leadForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const phone = normalizePhone(data.get("phone") || "");
-    hideFormError();
-    if (name.length < 2) {
-        showFormError("كتب الاسم.");
-        form.name.focus();
-        return;
-    }
-    if (!isMoroccanPhone(phone)) {
-        showFormError("دخل رقم هاتف مغربي صحيح، بحال 06XXXXXXXX.");
-        form.phone.focus();
-        return;
-    }
-    if (!cart.size) {
-        const summary = document.getElementById("pickedSummary");
-        summary.classList.add("is-warn");
-        summary.textContent = "زيد حلويات من المنيو قبل تأكيد الحجز.";
-        document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
-        return;
-    }
-    const items = cartList().map((line) => ({ id: line.id, name: line.name, qty: line.qty }));
-    saveLead({
-        name,
-        phone,
-        city: "الدروة",
-        items,
-        code: DISCOUNT_CODE,
-        at: new Date().toISOString()
-    });
-    openConfirm(items);
-    form.reset();
-    cart.clear();
-    renderCart();
-    renderMenu();
-    syncQashtotaButtons();
-});
-
-document.getElementById("vipForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "").trim();
-    const phone = normalizePhone(data.get("phone") || "");
-    const error = document.getElementById("vipError");
-    error.hidden = true;
-    if (name.length < 2) {
-        error.hidden = false;
-        error.textContent = "كتب الاسم.";
-        form.name.focus();
-        return;
-    }
-    if (!isMoroccanPhone(phone)) {
-        error.hidden = false;
-        error.textContent = "دخل رقم هاتف مغربي صحيح، بحال 06XXXXXXXX.";
-        form.phone.focus();
-        return;
-    }
-    saveLead({
-        name,
-        phone,
-        city: "الدروة",
-        source: "vip",
-        items: [],
-        code: DISCOUNT_CODE,
-        at: new Date().toISOString()
-    });
-    openConfirm([]);
-    form.reset();
-});
-
-document.getElementById("closeModal").addEventListener("click", () => {
-    document.getElementById("confirmModal").hidden = true;
-});
-document.getElementById("confirmModal").addEventListener("click", (event) => {
-    if (event.target.id === "confirmModal") event.currentTarget.hidden = true;
-});
-document.getElementById("copyCode").addEventListener("click", async () => {
-    const state = document.getElementById("copyState");
-    try {
-        await navigator.clipboard.writeText(DISCOUNT_CODE);
-        state.textContent = "تم نسخ الكود: " + DISCOUNT_CODE;
-    } catch (error) {
-        state.textContent = "الكود: " + DISCOUNT_CODE;
-    }
-});
-document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape") return;
-    document.getElementById("cartDrawer").hidden = true;
-    document.getElementById("confirmModal").hidden = true;
-});
 
 function initHeroSlider() {
     const slides = [...document.querySelectorAll(".hero-slide")];
@@ -428,6 +178,4 @@ function initHeroSlider() {
 }
 
 renderMenu();
-syncQashtotaButtons();
-renderCart();
 initHeroSlider();
