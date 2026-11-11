@@ -11,7 +11,7 @@
     <link rel="preload" as="image" href="images/hero/hero-qashtota.jpg?v=65" type="image/jpeg">
     <link rel="icon" href="images/favicon-32.png?v=62" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=62">
-    <link rel="stylesheet" href="style.css?v=66">
+    <link rel="stylesheet" href="style.css?v=67">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -54,39 +54,42 @@
 
     <main id="top">
         <section class="hero" aria-roledescription="carousel" aria-label="عرض الحلويات">
-            <div class="hero-slides">
-                <figure class="hero-slide is-active" data-caption="أم القشطوطة المانجو والبيستاشيو">
-                    <img src="images/hero/hero-qashtota.jpg?v=65" width="1376" height="768" fetchpriority="high" decoding="async" alt="علبة قشطوطة مستطيلة بشعار أم قشطوطة الجديد، ملعقة ذهبية ترفع كيك متشرب بالحليب مع فستق وشوكولاتة تتطاير">
-                </figure>
-                <figure class="hero-slide" data-caption="الكشري الحلو المكس">
-                    <img src="images/hero/hero-koshari.jpg?v=66" width="1376" height="768" loading="lazy" decoding="async" alt="علبة كشري حلو دائرية بشعار أم قشطوطة الجديد، طبقات كريمة وكنافة وفراولة مع رذاذ شوكولاتة">
-                </figure>
-                <figure class="hero-slide" data-caption="كيك الكنافة وسان سيباستيان الملكي">
-                    <img src="images/hero/hero-cake.jpg?v=65" width="1376" height="768" loading="lazy" decoding="async" alt="علبة أم قشطوطة فيها كنافة بالفستق وسان سيباستيان، عسل وكريمة ينزلان من فوق">
-                </figure>
-            </div>
-            <div class="hero-shade"></div>
-            <div class="wrap hero-content">
+            <div class="hero-stage">
+                <div class="hero-slides">
+                    <figure class="hero-slide is-active" data-caption="أم القشطوطة المانجو والبيستاشيو">
+                        <img src="images/hero/hero-qashtota.jpg?v=65" width="1376" height="768" fetchpriority="high" decoding="async" alt="علبة قشطوطة مستطيلة بشعار أم قشطوطة الجديد، ملعقة ذهبية ترفع كيك متشرب بالحليب مع فستق وشوكولاتة تتطاير">
+                    </figure>
+                    <figure class="hero-slide" data-caption="الكشري الحلو المكس">
+                        <img src="images/hero/hero-koshari.jpg?v=66" width="1376" height="768" loading="lazy" decoding="async" alt="علبة كشري حلو دائرية بشعار أم قشطوطة الجديد، طبقات كريمة وكنافة وفراولة مع رذاذ شوكولاتة">
+                    </figure>
+                    <figure class="hero-slide" data-caption="كيك الكنافة وسان سيباستيان الملكي">
+                        <img src="images/hero/hero-cake.jpg?v=65" width="1376" height="768" loading="lazy" decoding="async" alt="علبة أم قشطوطة فيها كنافة بالفستق وسان سيباستيان، عسل وكريمة ينزلان من فوق">
+                    </figure>
+                </div>
                 <p class="slide-chip" id="heroCaption">أم القشطوطة المانجو والبيستاشيو</p>
-                <p class="teaser">📍 قريباً الافتتاح الكبير لمحلنا الرسمي بمدينة <strong class="glow-city">الدروة (Deroua)!</strong></p>
-                <h1>عالم القشطوطة والحلويات الفاخرة بين يديك</h1>
-                <p class="hero-lead">ذوق أصيل، تقديم فاخر، ولحظة حجز تضمن لك خصم الافتتاح قبل الزحمة.</p>
-                <p class="countdown-label">العدّ التنازلي للافتتاح</p>
-                <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true" aria-label="العد التنازلي لافتتاح المحل">
-                    <div><strong id="cdDays">00</strong><span>يوم</span></div>
-                    <div><strong id="cdHours">00</strong><span>ساعة</span></div>
-                    <div><strong id="cdMins">00</strong><span>دقيقة</span></div>
-                    <div><strong id="cdSecs">00</strong><span>ثانية</span></div>
-                </div>
-                <div class="hero-actions">
-                    <a class="btn btn-gold" href="#menu">تصفّح المنيو</a>
-                    <a class="btn btn-ghost" href="#reserve">احجز خصم 20%</a>
+                <div class="hero-controls">
+                    <button type="button" class="hero-arrow" id="heroPrev" aria-label="الشريحة السابقة">‹</button>
+                    <div class="hero-dots" id="heroDots" role="tablist" aria-label="شرائح العرض"></div>
+                    <button type="button" class="hero-arrow" id="heroNext" aria-label="الشريحة التالية">›</button>
                 </div>
             </div>
-            <div class="hero-controls">
-                <button type="button" class="hero-arrow" id="heroPrev" aria-label="الشريحة السابقة">‹</button>
-                <div class="hero-dots" id="heroDots" role="tablist" aria-label="شرائح العرض"></div>
-                <button type="button" class="hero-arrow" id="heroNext" aria-label="الشريحة التالية">›</button>
+            <div class="hero-copy">
+                <div class="hero-copy-inner">
+                    <p class="teaser">📍 قريباً بمدينة <strong class="glow-city">الدروة</strong></p>
+                    <h1>حلويات فاخرة. جاهزة للحجز.</h1>
+                    <p class="hero-lead">قشطوطة، كشري حلو، ومثلجات في علبتها الأصلية — احجز خصم الافتتاح 20%.</p>
+                    <p class="countdown-label">العدّ التنازلي للافتتاح</p>
+                    <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true" aria-label="العد التنازلي لافتتاح المحل">
+                        <div><strong id="cdDays">00</strong><span>يوم</span></div>
+                        <div><strong id="cdHours">00</strong><span>ساعة</span></div>
+                        <div><strong id="cdMins">00</strong><span>دقيقة</span></div>
+                        <div><strong id="cdSecs">00</strong><span>ثانية</span></div>
+                    </div>
+                    <div class="hero-actions">
+                        <a class="btn btn-gold" href="#menu">تصفّح المنيو</a>
+                        <a class="btn btn-ghost" href="#reserve">احجز خصم 20%</a>
+                    </div>
+                </div>
             </div>
         </section>
 

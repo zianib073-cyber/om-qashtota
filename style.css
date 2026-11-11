@@ -209,11 +209,19 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero {
-    position: relative;
-    min-height: min(82svh, 860px);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     color: #fff;
-    background: var(--navy);
+    background: #14061c;
+}
+.hero-stage {
+    position: relative;
+    min-height: 48svh;
+    background:
+        radial-gradient(ellipse at 50% 40%, rgba(217, 70, 239, 0.18), transparent 58%),
+        #1a0826;
+    overflow: hidden;
 }
 .hero-slides,
 .hero-slide {
@@ -234,37 +242,24 @@ a { color: inherit; text-decoration: none; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 42%;
-    animation: kenburns 6.8s ease-out forwards;
-}
-.hero-slide.is-active img { animation-name: kenburns; }
-.hero-shade {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background:
-        linear-gradient(180deg, rgba(13, 5, 26, 0.18) 0%, rgba(13, 5, 26, 0.42) 48%, rgba(13, 5, 26, 0.88) 100%),
-        linear-gradient(270deg, rgba(13, 5, 26, 0.78) 0%, rgba(13, 5, 26, 0.28) 52%, rgba(13, 5, 26, 0.08) 100%);
-}
-.hero-content {
-    position: relative;
-    z-index: 3;
-    padding: 28px 0 108px;
-    padding-left: 58px;
-    max-width: 42rem;
+    object-position: center 58%;
+    transform: scale(1.12);
+    transform-origin: center 62%;
 }
 .slide-chip {
-    display: inline-block;
-    margin: 0 0 12px;
-    padding: 6px 14px;
+    position: absolute;
+    z-index: 3;
+    top: 14px;
+    inset-inline-start: 14px;
+    margin: 0;
+    padding: 7px 14px;
     border-radius: 999px;
-    background: rgba(217, 70, 239, 0.16);
-    border: 1px solid rgba(217, 70, 239, 0.55);
+    background: rgba(13, 5, 26, 0.62);
+    border: 1px solid rgba(250, 204, 21, 0.55);
     color: #FFFFFF;
     font-weight: 800;
-    font-size: 0.9rem;
-    box-shadow: 0 0 12px rgba(217, 70, 239, 0.25);
+    font-size: 0.82rem;
+    backdrop-filter: blur(8px);
 }
 .hero-controls {
     position: absolute;
@@ -276,6 +271,17 @@ a { color: inherit; text-decoration: none; }
     justify-content: center;
     gap: 10px;
     pointer-events: auto;
+}
+.hero-copy {
+    background: linear-gradient(180deg, #1c0828 0%, #2a0b42 100%);
+    border-top: 1px solid rgba(250, 204, 21, 0.22);
+    padding: 22px 0 26px;
+    min-width: 0;
+}
+.hero-copy-inner {
+    width: min(1120px, calc(100% - 32px));
+    margin-inline: auto;
+    min-width: 0;
 }
 .hero-arrow {
     width: 44px;
@@ -312,37 +318,44 @@ a { color: inherit; text-decoration: none; }
 }
 .teaser {
     display: inline-block;
-    max-width: 36rem;
-    background: rgba(13, 5, 26, 0.55);
-    border: 1px solid rgba(217, 70, 239, 0.45);
+    margin: 0 0 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(217, 70, 239, 0.14);
+    border: 1px solid rgba(217, 70, 239, 0.4);
     color: #F3E8FF;
-    border-radius: 18px;
-    padding: 8px 14px;
-    margin: 0 0 16px;
     font-weight: 700;
+    font-size: 0.88rem;
 }
 .hero h1 {
     font-family: "Cairo", sans-serif;
     font-weight: 900;
-    font-size: clamp(1.85rem, 6.6vw, 3.55rem);
-    line-height: 1.28;
-    margin: 0 0 12px;
-    max-width: 16em;
+    font-size: clamp(1.35rem, 5vw, 1.9rem);
+    line-height: 1.35;
+    margin: 0 0 10px;
     color: #FFFFFF;
+    overflow-wrap: break-word;
 }
-.teaser .glow-city { font-size: 1.08em; white-space: nowrap; }
-.hero-lead { max-width: 38ch; color: #F3E8FF; }
+.teaser .glow-city { font-size: 1.05em; white-space: nowrap; }
+.hero-lead {
+    max-width: 36ch;
+    margin: 0 0 16px;
+    color: #E9D5FF;
+    font-size: 0.98rem;
+    line-height: 1.65;
+}
 .countdown-label {
-    margin: 22px 0 8px;
+    margin: 0 0 8px;
     color: var(--gold);
     font-weight: 700;
+    font-size: 0.88rem;
 }
 .countdown {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
-    max-width: 420px;
-    margin: 0 0 22px;
+    max-width: 100%;
+    margin: 0 0 18px;
 }
 .countdown div {
     background: rgba(13, 5, 26, 0.55);
@@ -844,7 +857,22 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
         width: 72px;
     }
     .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .hero-content { padding-top: 56px; }
+    .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(340px, 0.8fr);
+        min-height: min(78svh, 760px);
+    }
+    .hero-stage { min-height: 100%; }
+    .hero-copy {
+        display: flex;
+        align-items: center;
+        padding: 36px 28px;
+        border-top: 0;
+        border-inline-start: 1px solid rgba(250, 204, 21, 0.2);
+        background: linear-gradient(200deg, #2a0a40 0%, #14061c 100%);
+    }
+    .hero-copy-inner { width: 100%; margin: 0; }
+    .hero h1 { font-size: clamp(1.35rem, 1.8vw, 1.85rem); }
     .offer-inner, .reserve-grid, .footer-grid {
         grid-template-columns: 1.2fr 0.8fr;
         align-items: center;
@@ -901,5 +929,5 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
     .ticker-track p { white-space: normal; }
     .ticker-track p[aria-hidden="true"] { display: none; }
     .vip-badge { animation: none; }
-    .hero-slide img { animation: none; }
+    .hero-slide img { transform: none; }
 }
