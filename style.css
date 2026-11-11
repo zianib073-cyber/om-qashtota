@@ -339,39 +339,11 @@ a { color: inherit; text-decoration: none; }
 .teaser .glow-city { font-size: 1.05em; white-space: nowrap; }
 .hero-lead {
     max-width: 36ch;
-    margin: 0 0 16px;
+    margin: 0 0 20px;
     color: #E9D5FF;
     font-size: 0.98rem;
     line-height: 1.65;
 }
-.countdown-label {
-    margin: 0 0 8px;
-    color: var(--gold);
-    font-weight: 700;
-    font-size: 0.88rem;
-}
-.countdown {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-    max-width: 100%;
-    margin: 0 0 18px;
-}
-.countdown div {
-    background: rgba(13, 5, 26, 0.55);
-    border: 1px solid rgba(217, 70, 239, 0.4);
-    border-radius: 16px;
-    text-align: center;
-    padding: 12px 6px;
-    box-shadow: 0 0 12px rgba(217, 70, 239, 0.18);
-}
-.countdown strong {
-    display: block;
-    font-size: 1.6rem;
-    color: var(--gold);
-    line-height: 1;
-}
-.countdown span { font-size: 0.78rem; opacity: 0.8; color: #F3E8FF; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .offer-strip {

@@ -1,5 +1,3 @@
-// تاريخ مؤقت للعدّاد إلى أن يُحدَّد يوم الافتتاح الحقيقي.
-const LAUNCH_AT = new Date("2026-11-15T10:00:00+01:00");
 const DISCOUNT_CODE = "QASHTOTA20";
 
 // صورة العلبة: حط item.image ملي توصل صورة الحلوى، وإلا كيبان تصوير القسم.
@@ -89,26 +87,6 @@ const CATEGORIES = [
 ];
 
 const cart = new Map();
-
-function pad(n) {
-    return String(n).padStart(2, "0");
-}
-
-function tickCountdown() {
-    const now = Date.now();
-    let diff = Math.max(0, LAUNCH_AT.getTime() - now);
-    const days = Math.floor(diff / 86400000);
-    diff -= days * 86400000;
-    const hours = Math.floor(diff / 3600000);
-    diff -= hours * 3600000;
-    const mins = Math.floor(diff / 60000);
-    diff -= mins * 60000;
-    const secs = Math.floor(diff / 1000);
-    document.getElementById("cdDays").textContent = pad(days);
-    document.getElementById("cdHours").textContent = pad(hours);
-    document.getElementById("cdMins").textContent = pad(mins);
-    document.getElementById("cdSecs").textContent = pad(secs);
-}
 
 function packSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
@@ -453,5 +431,3 @@ renderMenu();
 syncQashtotaButtons();
 renderCart();
 initHeroSlider();
-tickCountdown();
-setInterval(tickCountdown, 1000);
