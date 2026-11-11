@@ -871,7 +871,7 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
 }
 .card-bowl img {
     object-fit: cover;
-    object-position: center;
+    object-position: center 62%;
     border-radius: 50%;
 }
 @media (max-width: 799px) {

@@ -112,7 +112,7 @@ function tickCountdown() {
 
 function packSrc(cat, item) {
     const src = (item.image || cat.image).replace(/\.jpe?g$/i, ".webp");
-    return item.image ? src + "?v=65" : src;
+    return item.image ? src + "?v=66" : src;
 }
 
 function findItem(id) {
