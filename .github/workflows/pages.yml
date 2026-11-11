@@ -11,14 +11,17 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: om-qashtota-pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "runner ready"
+
+  build:
+    needs: health
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,6 +32,14 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
