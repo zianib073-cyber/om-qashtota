@@ -216,6 +216,64 @@ function initSoonPopup() {
     });
 }
 
-renderMenu();
-initHeroSlider();
-initSoonPopup();
+const GATE_KEY = "oq_admin";
+const GATE_HASH = "fb19a1dd303a4f9b83c027ce2889a79ce8456ff6ab6c4d8806cf27618b7e1189";
+
+async function sha256Hex(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function openSite() {
+    document.documentElement.classList.remove("is-gated");
+    const gate = document.getElementById("gate");
+    if (gate) gate.hidden = true;
+}
+
+function startStore() {
+    openSite();
+    renderMenu();
+    initHeroSlider();
+    initSoonPopup();
+}
+
+function initGate() {
+    const form = document.getElementById("gateForm");
+    const input = document.getElementById("gatePass");
+    const error = document.getElementById("gateError");
+    if (!form || !input) return;
+    let fails = 0;
+    let lockedUntil = 0;
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const now = Date.now();
+        if (now < lockedUntil) {
+            error.hidden = false;
+            error.textContent = "حاول مرة أخرى بعد لحظات.";
+            return;
+        }
+        const hash = await sha256Hex(input.value.trim());
+        if (hash === GATE_HASH) {
+            try { sessionStorage.setItem(GATE_KEY, "1"); } catch (err) {}
+            startStore();
+            return;
+        }
+        fails += 1;
+        input.value = "";
+        input.focus();
+        error.hidden = false;
+        error.textContent = "كلمة السر غير صحيحة.";
+        if (fails >= 5) {
+            lockedUntil = Date.now() + 20000;
+            error.textContent = "محاولات كثيرة. انتظر قليلاً.";
+        }
+    });
+    input.focus();
+}
+
+try {
+    if (sessionStorage.getItem(GATE_KEY) === "1") startStore();
+    else initGate();
+} catch (err) {
+    initGate();
+}

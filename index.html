@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="is-gated">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أم قشطوطة | Om Qashtota — قريباً بالدروة</title>
-    <meta name="description" content="عالم القشطوطة والحلويات الفاخرة. قريباً بمدينة الدروة — خصم 20% بمناسبة الافتتاح.">
+    <meta name="description" content="أم قشطوطة — الافتتاح قريباً بمدينة الدروة. الموقع تحت الصيانة.">
+    <meta name="robots" content="noindex, nofollow">
+    <script>
+        (function () {
+            try {
+                if (sessionStorage.getItem("oq_admin") === "1") {
+                    document.documentElement.classList.remove("is-gated");
+                }
+            } catch (err) {}
+        })();
+    </script>
+    <style>
+        html.is-gated, html.is-gated body { background: #160420 !important; }
+        html.is-gated body > :not(#gate) { display: none !important; }
+        html:not(.is-gated) #gate { display: none !important; }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@700;800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="images/hero/hero-qashtota.jpg?v=65" type="image/jpeg">
     <link rel="icon" href="images/favicon-32.png?v=62" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=62">
-    <link rel="stylesheet" href="style.css?v=73">
+    <link rel="stylesheet" href="style.css?v=74">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,6 +38,22 @@
     </script>
 </head>
 <body>
+    <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+        <div class="gate-card">
+            <img class="gate-logo" src="images/logo.png?v=62" width="88" height="88" alt="أم قشطوطة — Om Qashtota">
+            <p class="gate-kicker">تحت الصيانة</p>
+            <h1 id="gateTitle">الافتتاح قريباً</h1>
+            <p class="gate-en" lang="en" dir="ltr">Opening Soon / Under Maintenance</p>
+            <p class="gate-lead">نرحّب بكم قريباً في أم قشطوطة بمدينة الدروة. الموقع غير متاح للزوار حالياً.</p>
+            <form id="gateForm" class="gate-form" autocomplete="off">
+                <label class="sr-only" for="gatePass">كلمة سر المسؤول</label>
+                <input id="gatePass" name="password" type="password" inputmode="text" autocomplete="current-password" placeholder="دخول المسؤول" required>
+                <button class="btn btn-gold" type="submit">دخول</button>
+                <p class="gate-error" id="gateError" hidden>كلمة السر غير صحيحة.</p>
+            </form>
+        </div>
+    </div>
+
     <div class="topbar">
         <div class="ticker" role="region" aria-label="عرض الافتتاح">
             <span class="vip-badge">VIP</span>
@@ -292,6 +322,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=74" defer></script>
+    <script src="script.js?v=75" defer></script>
 </body>
 </html>
