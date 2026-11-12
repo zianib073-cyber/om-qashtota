@@ -40,6 +40,53 @@ a { color: inherit; text-decoration: none; }
     border: 0;
 }
 
+.dead {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    align-items: start;
+    justify-items: start;
+    padding: 12vh 16% 40px;
+    background: #fff;
+    color: #202124;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: left;
+    direction: ltr;
+}
+.dead-inner { max-width: 640px; }
+.dead-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 18px;
+}
+.dead h1 {
+    margin: 0 0 12px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #202124;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+.dead-lead, .dead-try, .dead ul {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    color: #5f6368;
+}
+.dead ul {
+    padding-inline-start: 22px;
+    margin-bottom: 22px;
+}
+.dead-code {
+    margin: 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: #80868b;
+    cursor: default;
+    user-select: none;
+}
+
 .gate {
     position: fixed;
     inset: 0;

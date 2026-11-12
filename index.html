@@ -3,29 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أم قشطوطة | Om Qashtota — قريباً بالدروة</title>
-    <meta name="description" content="أم قشطوطة — الافتتاح قريباً بمدينة الدروة. الموقع تحت الصيانة.">
-    <meta name="robots" content="noindex, nofollow">
+    <title>This site can’t be reached</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, nofollow, noarchive">
     <script>
         (function () {
             try {
                 if (sessionStorage.getItem("oq_admin") === "1") {
                     document.documentElement.classList.remove("is-gated");
+                    document.title = "أم قشطوطة | Om Qashtota — قريباً بالدروة";
+                } else if ((location.hash || "").replace(/^#/, "") === "admin") {
+                    document.documentElement.classList.add("is-admin-login");
                 }
             } catch (err) {}
         })();
     </script>
     <style>
-        html.is-gated, html.is-gated body { background: #160420 !important; }
-        html.is-gated body > :not(#gate) { display: none !important; }
-        html:not(.is-gated) #gate { display: none !important; }
+        html.is-gated, html.is-gated body {
+            background: #fff !important;
+            color: #202124;
+            font-family: "Segoe UI", Tahoma, sans-serif !important;
+        }
+        html.is-gated body > :not(#dead):not(#gate) { display: none !important; }
+        html.is-gated:not(.is-admin-login) #gate { display: none !important; }
+        html.is-gated.is-admin-login #dead { display: none !important; }
+        html.is-gated.is-admin-login, html.is-gated.is-admin-login body { background: #160420 !important; }
+        html:not(.is-gated) #dead, html:not(.is-gated) #gate { display: none !important; }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@700;800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="images/favicon-32.png?v=62" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=62">
-    <link rel="stylesheet" href="style.css?v=74">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css?v=75">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -38,6 +47,25 @@
     </script>
 </head>
 <body>
+    <div id="dead" class="dead" dir="ltr" lang="en">
+        <div class="dead-inner">
+            <svg class="dead-icon" viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="24" cy="24" r="20" fill="none" stroke="#dadce0" stroke-width="3"/>
+                <path d="M24 4c5 6 8 13 8 20s-3 14-8 20M24 4c-5 6-8 13-8 20s3 14 8 20M5 18h38M5 30h38" fill="none" stroke="#dadce0" stroke-width="3"/>
+                <path d="M14 14l20 20" stroke="#d93025" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <h1>This site can’t be reached</h1>
+            <p class="dead-lead"><strong id="deadHost">this site</strong> refused to connect.</p>
+            <p class="dead-try">Try:</p>
+            <ul>
+                <li>Checking the connection</li>
+                <li>Checking the proxy and the firewall</li>
+                <li>Running Windows Network Diagnostics</li>
+            </ul>
+            <p class="dead-code" id="deadCode">ERR_CONNECTION_REFUSED</p>
+        </div>
+    </div>
+
     <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
         <div class="gate-card">
             <img class="gate-logo" src="images/logo.png?v=62" width="88" height="88" alt="أم قشطوطة — Om Qashtota">
@@ -322,6 +350,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=75" defer></script>
+    <script src="script.js?v=76" defer></script>
 </body>
 </html>

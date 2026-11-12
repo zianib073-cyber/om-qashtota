@@ -224,10 +224,19 @@ async function sha256Hex(text) {
     return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+function isAdminHash() {
+    return (location.hash || "").replace(/^#/, "") === "admin";
+}
+
 function openSite() {
-    document.documentElement.classList.remove("is-gated");
+    document.documentElement.classList.remove("is-gated", "is-admin-login");
     const gate = document.getElementById("gate");
+    const dead = document.getElementById("dead");
     if (gate) gate.hidden = true;
+    if (dead) dead.hidden = true;
+    document.title = "أم قشطوطة | Om Qashtota — قريباً بالدروة";
+    const fav = document.querySelector('link[rel="icon"]');
+    if (fav) fav.setAttribute("href", "images/favicon-32.png?v=62");
 }
 
 function startStore() {
@@ -237,11 +246,17 @@ function startStore() {
     initSoonPopup();
 }
 
+function showAdminLogin() {
+    document.documentElement.classList.add("is-gated", "is-admin-login");
+    initGate();
+}
+
 function initGate() {
     const form = document.getElementById("gateForm");
     const input = document.getElementById("gatePass");
     const error = document.getElementById("gateError");
-    if (!form || !input) return;
+    if (!form || !input || form.dataset.ready === "1") return;
+    form.dataset.ready = "1";
     let fails = 0;
     let lockedUntil = 0;
     form.addEventListener("submit", async (event) => {
@@ -271,9 +286,28 @@ function initGate() {
     input.focus();
 }
 
+function initDead() {
+    const host = document.getElementById("deadHost");
+    if (host) host.textContent = location.hostname || "this site";
+    const code = document.getElementById("deadCode");
+    let taps = 0;
+    if (code) {
+        code.addEventListener("click", () => {
+            taps += 1;
+            if (taps >= 8) showAdminLogin();
+        });
+    }
+    window.addEventListener("hashchange", () => {
+        if (isAdminHash()) showAdminLogin();
+    });
+}
+
 try {
     if (sessionStorage.getItem(GATE_KEY) === "1") startStore();
-    else initGate();
+    else {
+        initDead();
+        if (isAdminHash()) showAdminLogin();
+    }
 } catch (err) {
-    initGate();
+    initDead();
 }
