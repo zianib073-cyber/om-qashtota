@@ -866,6 +866,14 @@ body.soon-open { overflow: hidden; }
     height: auto !important;
     border-radius: 50%;
 }
+#koshari .card-bowl {
+    padding: 14px 12px 20px;
+}
+#koshari .card-bowl .pack {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 16px;
+}
 .card-pack img {
     object-fit: cover;
     object-position: center;
@@ -875,6 +883,15 @@ body.soon-open { overflow: hidden; }
     object-fit: cover;
     object-position: center 62%;
     border-radius: 50%;
+}
+#koshari .card-bowl img {
+    width: 148%;
+    height: 148%;
+    inset: auto;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-position: center 46%;
 }
 @media (max-width: 799px) {
     .card { padding: 16px; }
