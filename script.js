@@ -176,5 +176,45 @@ function initHeroSlider() {
     play();
 }
 
+function initSoonPopup() {
+    const overlay = document.getElementById("soonOverlay");
+    const closeBtn = document.getElementById("soonClose");
+    if (!overlay || !closeBtn) return;
+    let lastFocus = null;
+
+    function openSoon(event) {
+        event.preventDefault();
+        lastFocus = document.activeElement;
+        overlay.hidden = false;
+        overlay.classList.remove("is-open");
+        void overlay.offsetWidth;
+        overlay.classList.add("is-open");
+        document.body.classList.add("soon-open");
+        closeBtn.focus();
+    }
+
+    function closeSoon() {
+        if (!overlay.classList.contains("is-open") && overlay.hidden) return;
+        overlay.classList.remove("is-open");
+        document.body.classList.remove("soon-open");
+        window.setTimeout(() => {
+            if (!overlay.classList.contains("is-open")) overlay.hidden = true;
+        }, 320);
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }
+
+    document.querySelectorAll(".js-soon").forEach((el) => {
+        el.addEventListener("click", openSoon);
+    });
+    closeBtn.addEventListener("click", closeSoon);
+    overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) closeSoon();
+    });
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && overlay.classList.contains("is-open")) closeSoon();
+    });
+}
+
 renderMenu();
 initHeroSlider();
+initSoonPopup();
