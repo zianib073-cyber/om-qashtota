@@ -867,12 +867,23 @@ body.soon-open { overflow: hidden; }
     border-radius: 50%;
 }
 #koshari .card-bowl {
-    padding: 14px 12px 20px;
+    padding: 12px 12px 18px;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    box-shadow: 0 8px 18px rgba(59, 7, 100, 0.08);
 }
 #koshari .card-bowl .pack {
     width: 100%;
     max-width: none;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    border: 2px solid #FACC15;
+    box-shadow:
+        0 0 0 4px #3B0764,
+        0 10px 20px rgba(59, 7, 100, 0.16);
+    background: #2A0748;
+}
+#koshari .card:hover .pack {
+    transform: none;
 }
 .card-pack img {
     object-fit: cover;
@@ -885,13 +896,13 @@ body.soon-open { overflow: hidden; }
     border-radius: 50%;
 }
 #koshari .card-bowl img {
-    width: 148%;
-    height: 148%;
-    inset: auto;
-    top: 47%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    object-position: center 46%;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    transform: none;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
 }
 @media (max-width: 799px) {
     .card { padding: 16px; }
