@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="is-blocked">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أم قشطوطة | Om Qashtota — قريباً بالدروة</title>
-    <meta name="description" content="عالم القشطوطة والحلويات الفاخرة. قريباً بمدينة الدروة — خصم 20% بمناسبة الافتتاح.">
+    <title>This page isn’t available</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <script>
+        (function () {
+            var token = "fb19a1dd303a4f9b83c027ce2889a79ce8456ff6ab6c4d8806cf27618b7e1189";
+            try {
+                if (sessionStorage.getItem("oq_admin") === token) {
+                    document.documentElement.classList.remove("is-blocked");
+                    document.title = "أم قشطوطة | Om Qashtota — قريباً بالدروة";
+                } else if ((location.hash || "").replace(/^#/, "") === "admin") {
+                    document.documentElement.classList.add("is-admin-login");
+                }
+            } catch (err) {}
+        })();
+    </script>
+    <style>
+        html.is-blocked, html.is-blocked body {
+            background: #f4f4f5 !important;
+            color: #18181b;
+            font-family: "Segoe UI", system-ui, sans-serif !important;
+        }
+        html.is-blocked body > :not(#blocked):not(#gate) { display: none !important; }
+        html.is-blocked img:not(.gate-logo) { display: none !important; }
+        html.is-blocked:not(.is-admin-login) #gate { display: none !important; }
+        html.is-blocked.is-admin-login #blocked { display: none !important; }
+        html.is-blocked.is-admin-login, html.is-blocked.is-admin-login body { background: #160420 !important; }
+        html:not(.is-blocked) #blocked, html:not(.is-blocked) #gate { display: none !important; }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@700;800;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="images/hero/hero-qashtota.jpg?v=65" type="image/jpeg">
-    <link rel="icon" href="images/favicon-32.png?v=62" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=62">
-    <link rel="stylesheet" href="style.css?v=76">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css?v=77">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,6 +49,29 @@
     </script>
 </head>
 <body>
+    <div id="blocked" class="blocked" dir="ltr" lang="en">
+        <div class="blocked-inner">
+            <h1>This page isn’t available</h1>
+            <p>The requested content is not available in your region.</p>
+        </div>
+    </div>
+
+    <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+        <div class="gate-card">
+            <img class="gate-logo" src="images/logo.png?v=62" width="88" height="88" alt="أم قشطوطة — Om Qashtota">
+            <p class="gate-kicker">دخول المسؤول</p>
+            <h1 id="gateTitle">لوحة التحكم</h1>
+            <p class="gate-en" lang="en" dir="ltr">Administrator access only</p>
+            <p class="gate-lead">الموقع غير متاح في هذه المنطقة. الدخول مخصص للمسؤول فقط.</p>
+            <form id="gateForm" class="gate-form" autocomplete="off">
+                <label class="sr-only" for="gatePass">كلمة سر المسؤول</label>
+                <input id="gatePass" name="password" type="password" inputmode="text" autocomplete="current-password" placeholder="كلمة السر" required>
+                <button class="btn btn-gold" type="submit">دخول</button>
+                <p class="gate-error" id="gateError" hidden>كلمة السر غير صحيحة.</p>
+            </form>
+        </div>
+    </div>
+
     <div class="topbar">
         <div class="ticker" role="region" aria-label="عرض الافتتاح">
             <span class="vip-badge">VIP</span>
@@ -55,7 +103,7 @@
             <div class="hero-stage">
                 <div class="hero-slides">
                     <figure class="hero-slide is-active" data-caption="أم القشطوطة المانجو والبيستاشيو">
-                        <img src="images/hero/hero-qashtota.jpg?v=65" width="1376" height="768" fetchpriority="high" decoding="async" alt="علبة قشطوطة مستطيلة بشعار أم قشطوطة الجديد، ملعقة ذهبية ترفع كيك متشرب بالحليب مع فستق وشوكولاتة تتطاير">
+                        <img src="images/hero/hero-qashtota.jpg?v=65" width="1376" height="768" loading="lazy" decoding="async" alt="علبة قشطوطة مستطيلة بشعار أم قشطوطة الجديد، ملعقة ذهبية ترفع كيك متشرب بالحليب مع فستق وشوكولاتة تتطاير">
                     </figure>
                     <figure class="hero-slide" data-caption="الكشري الحلو المكس">
                         <img src="images/hero/hero-koshari.jpg?v=66" width="1376" height="768" loading="lazy" decoding="async" alt="علبة كشري حلو دائرية بشعار أم قشطوطة الجديد، طبقات كريمة وكنافة وفراولة مع رذاذ شوكولاتة">
@@ -292,6 +340,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=77" defer></script>
+    <script src="script.js?v=78" defer></script>
 </body>
 </html>

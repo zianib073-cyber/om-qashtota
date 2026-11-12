@@ -216,6 +216,174 @@ function initSoonPopup() {
     });
 }
 
-renderMenu();
-initHeroSlider();
-initSoonPopup();
+const GATE_KEY = "oq_admin";
+const GATE_HASH = "fb19a1dd303a4f9b83c027ce2889a79ce8456ff6ab6c4d8806cf27618b7e1189";
+const BLOCKED_COUNTRIES = new Set(["MA", "MAR"]);
+const BLOCKED_TZ = new Set(["Africa/Casablanca", "Africa/El_Aaiun"]);
+const STORE_TITLE = "أم قشطوطة | Om Qashtota — قريباً بالدروة";
+const STORE_DESC = "عالم القشطوطة والحلويات الفاخرة. قريباً بمدينة الدروة — خصم 20% بمناسبة الافتتاح.";
+
+async function sha256Hex(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function isAdminHash() {
+    return (location.hash || "").replace(/^#/, "") === "admin";
+}
+
+function isMoroccoTimezone() {
+    try {
+        return BLOCKED_TZ.has(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    } catch (err) {
+        return false;
+    }
+}
+
+async function lookupCountries() {
+    const read = async (url, pick) => {
+        const ctrl = new AbortController();
+        const timer = window.setTimeout(() => ctrl.abort(), 4000);
+        try {
+            const res = await fetch(url, { signal: ctrl.signal, cache: "no-store" });
+            if (!res.ok) throw new Error("geo");
+            return pick(await res.json());
+        } finally {
+            window.clearTimeout(timer);
+        }
+    };
+    const settled = await Promise.allSettled([
+        read("https://api.country.is/", (data) => data && data.country),
+        read("https://ipwho.is/?fields=country_code,success", (data) => data && data.success !== false && data.country_code),
+        read("https://get.geojs.io/v1/ip/country.json", (data) => data && data.country)
+    ]);
+    return settled
+        .filter((row) => row.status === "fulfilled" && row.value)
+        .map((row) => String(row.value).trim().toUpperCase());
+}
+
+function openSite() {
+    document.documentElement.classList.remove("is-blocked", "is-admin-login");
+    const blocked = document.getElementById("blocked");
+    const gate = document.getElementById("gate");
+    if (blocked) blocked.hidden = true;
+    if (gate) gate.hidden = true;
+    document.title = STORE_TITLE;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", STORE_DESC);
+    const robots = document.querySelector('meta[name="robots"]');
+    if (robots) robots.setAttribute("content", "index, follow");
+    const fav = document.querySelector('link[rel="icon"]');
+    if (fav) {
+        fav.setAttribute("href", "images/favicon-32.png?v=62");
+        fav.setAttribute("type", "image/png");
+        fav.setAttribute("sizes", "32x32");
+    }
+    if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+        const apple = document.createElement("link");
+        apple.rel = "apple-touch-icon";
+        apple.href = "images/apple-touch-icon.png?v=62";
+        document.head.appendChild(apple);
+    }
+    const hero = document.querySelector(".hero-slide.is-active img, .hero-slide img");
+    if (hero) {
+        hero.loading = "eager";
+        hero.fetchPriority = "high";
+    }
+}
+
+function startStore() {
+    openSite();
+    renderMenu();
+    initHeroSlider();
+    initSoonPopup();
+}
+
+function showBlocked() {
+    document.documentElement.classList.add("is-blocked");
+    document.documentElement.classList.remove("is-admin-login");
+    const blocked = document.getElementById("blocked");
+    const gate = document.getElementById("gate");
+    if (blocked) blocked.hidden = false;
+    if (gate) gate.hidden = true;
+    document.title = "This page isn’t available";
+}
+
+function showAdminLogin() {
+    document.documentElement.classList.add("is-blocked", "is-admin-login");
+    const blocked = document.getElementById("blocked");
+    const gate = document.getElementById("gate");
+    if (blocked) blocked.hidden = true;
+    if (gate) gate.hidden = false;
+    initGate();
+}
+
+function initGate() {
+    const form = document.getElementById("gateForm");
+    const input = document.getElementById("gatePass");
+    const error = document.getElementById("gateError");
+    if (!form || !input || form.dataset.ready === "1") return;
+    form.dataset.ready = "1";
+    let fails = 0;
+    let lockedUntil = 0;
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (Date.now() < lockedUntil) {
+            error.hidden = false;
+            error.textContent = "حاول مرة أخرى بعد لحظات.";
+            return;
+        }
+        const hash = await sha256Hex(input.value.trim());
+        if (hash === GATE_HASH) {
+            try { sessionStorage.setItem(GATE_KEY, GATE_HASH); } catch (err) {}
+            startStore();
+            history.replaceState(null, "", location.pathname + location.search);
+            return;
+        }
+        fails += 1;
+        input.value = "";
+        input.focus();
+        error.hidden = false;
+        error.textContent = "كلمة السر غير صحيحة.";
+        if (fails >= 5) {
+            lockedUntil = Date.now() + 20000;
+            error.textContent = "محاولات كثيرة. انتظر قليلاً.";
+        }
+    });
+    input.focus();
+}
+
+function watchAdminHash() {
+    window.addEventListener("hashchange", () => {
+        if (isAdminHash()) showAdminLogin();
+    });
+}
+
+async function initAccess() {
+    watchAdminHash();
+    try {
+        if (sessionStorage.getItem(GATE_KEY) === GATE_HASH) {
+            startStore();
+            return;
+        }
+    } catch (err) {}
+    if (isAdminHash()) {
+        showAdminLogin();
+        return;
+    }
+    if (isMoroccoTimezone()) {
+        showBlocked();
+        return;
+    }
+    try {
+        const codes = await lookupCountries();
+        const blocked = codes.some((code) => BLOCKED_COUNTRIES.has(code));
+        const allowed = codes.length > 0 && !blocked;
+        if (allowed) startStore();
+        else showBlocked();
+    } catch (err) {
+        showBlocked();
+    }
+}
+
+initAccess();
