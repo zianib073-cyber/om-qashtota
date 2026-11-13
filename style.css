@@ -544,6 +544,85 @@ a { color: inherit; text-decoration: none; }
     margin: 0 0 6px;
 }
 
+.story {
+    padding: 40px 0 48px;
+    scroll-margin-top: 210px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(250, 204, 21, 0.16), transparent 36%),
+        radial-gradient(circle at 92% 100%, rgba(217, 70, 239, 0.14), transparent 40%),
+        linear-gradient(180deg, #FAE8FF 0%, #F3E8FF 100%);
+}
+.story-inner { max-width: 920px; }
+.story .eyebrow { letter-spacing: 0.04em; }
+.story h2 {
+    font-family: "Amiri", serif;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    margin: 0 0 10px;
+    color: var(--heading);
+}
+.story h2::after {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 2px;
+    margin: 12px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--neon), var(--gold), transparent);
+}
+.story-lead {
+    margin: 0 auto;
+    max-width: 46ch;
+    color: var(--lavender);
+    font-weight: 700;
+    line-height: 1.75;
+}
+.story-grid {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+}
+.story-card {
+    margin: 0;
+    padding: 22px 18px 20px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(250, 204, 21, 0.48);
+    box-shadow: 0 10px 24px rgba(59, 7, 100, 0.06), 0 0 18px rgba(217, 70, 239, 0.1);
+}
+.story-icon {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 10px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--gold);
+    background: #3B0764;
+    box-shadow: 0 0 14px rgba(217, 70, 239, 0.28);
+}
+.story-icon svg { width: 20px; height: 20px; }
+.story-card h3 {
+    margin: 0;
+    font-size: 1.08rem;
+    color: var(--heading);
+}
+.story-en {
+    margin: 2px 0 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--neon);
+}
+.story-card p:last-child {
+    margin: 10px 0 0;
+    color: var(--lavender);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
 .menu {
     padding: 48px 0 64px;
     background:
@@ -965,6 +1044,11 @@ body.soon-open { overflow: hidden; }
         padding: 52px 0 60px;
         scroll-margin-top: 140px;
     }
+    .story {
+        padding: 52px 0 56px;
+        scroll-margin-top: 140px;
+    }
+    .story-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .footer-grid {
         grid-template-columns: 1fr;
         align-items: center;
