@@ -268,9 +268,9 @@ function openSite() {
     const gate = document.getElementById("gate");
     if (blocked) blocked.hidden = true;
     if (gate) gate.hidden = true;
-    document.title = STORE_TITLE;
+    document.title = document.documentElement.getAttribute("data-store-title") || STORE_TITLE;
     const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", STORE_DESC);
+    if (desc) desc.setAttribute("content", document.documentElement.getAttribute("data-store-desc") || STORE_DESC);
     const robots = document.querySelector('meta[name="robots"]');
     if (robots) robots.setAttribute("content", "index, follow");
     const fav = document.querySelector('link[rel="icon"]');
@@ -294,7 +294,7 @@ function openSite() {
 
 function startStore() {
     openSite();
-    renderMenu();
+    if (document.getElementById("menuGrid") && document.getElementById("menuRest")) renderMenu();
     initHeroSlider();
     initSoonPopup();
 }
