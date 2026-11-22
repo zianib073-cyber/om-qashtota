@@ -657,13 +657,13 @@ a { color: inherit; text-decoration: none; }
 .q-section .cat-head h3 { font-size: 1.875rem; }
 .q-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
 }
 @media (min-width: 640px) {
     .q-section { padding: 2rem; }
     .q-section .cat-head h3 { font-size: 2.25rem; }
-    .q-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .q-grid { gap: 1.25rem; }
 }
 @media (min-width: 800px) {
     .q-section { scroll-margin-top: 140px; }
@@ -1122,8 +1122,31 @@ body.soon-open { overflow: hidden; }
     background: transparent;
 }
 @media (max-width: 799px) {
-    .card { padding: 16px; }
-    .card h4 { font-size: 1.05rem; }
+    .hero-stage { min-height: min(40svh, 340px); }
+    .hero-copy { padding: 18px 0 20px; }
+    .hero h1 { font-size: clamp(1.5rem, 5.6vw, 1.95rem); }
+    .hero-lead { margin-bottom: 14px; }
+    .menu { padding: 32px 0 48px; }
+    .menu .wrap { padding-left: 52px; }
+    #menuGrid { padding: 18px 10px 8px; }
+    .grid { gap: 10px; }
+    .card { padding: 12px 10px 14px; }
+    .card h4 { font-size: 1.02rem; margin-bottom: 4px; }
+    .pack,
+    .circular-img-container { margin-bottom: 10px; }
+    .card .desc {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 8px;
+    }
+    .card-foot { gap: 6px; padding-top: 4px; }
+    .promo-chip { margin-top: 6px; padding: 6px 10px; font-size: 0.72rem; }
+    .q-section { padding: 14px 10px; }
+    .q-section .cat-head { margin-bottom: 0.85rem; }
+    .q-grid { gap: 10px; }
+    .q-grid .card-pack .pack { margin-bottom: 8px; }
     .price-badge {
         top: 8px;
         inset-inline-start: 8px;
