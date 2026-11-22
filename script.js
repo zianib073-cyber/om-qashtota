@@ -9,11 +9,11 @@ const CATEGORIES = [
         blurb: "تجربة الكشري الحلو الفاخرة، طبقات من الإبداع واللذة في علبة دائرية بالشعار",
         blurbFr: "Expérience Koshari Sweet Premium",
         items: [
-            { id: "k-oreo", image: "images/plates/k-oreo.jpg", name: "كشري أوريو بالشوكولاتة", en: "Koshari Oreo & Chocolate", desc: "فتات أوريو وكريمة حليب، مع شوكولاتة بلجيكية تسيل على طبقات الكشري.", featured: true },
-            { id: "k-pistachio", image: "images/plates/k-pistachio.jpg", name: "كشري فستق كريمي", en: "Koshari Pistachio Cream", desc: "شعيرية مقرمشة مع كريمة فستق كثيفة تغمر الطبقات.", featured: true },
-            { id: "k-fraise", image: "images/plates/k-fraise.jpg", name: "كشري فراولة وشوكولاتة", en: "Koshari Fraise & Chocolat", desc: "فراولة طرية وشوكولاتة بلجيكية تسيل على طبقات الكشري.", featured: true },
-            { id: "k-mix", image: "images/plates/k-mix.jpg", name: "كشري مكس", en: "Koshari Mix", desc: "طبقات كشري حلو متداخلة: قشطة، مكسرات وصلصات، في علبة دائرية بالشعار.", featured: true },
-            { id: "k-mango", image: "images/plates/k-mango.jpg", name: "كشري مانجو", en: "Koshari Mango", desc: "مكعبات مانجو طازجة فوق طبقات الكشري الحلو والكريمة." }
+            { id: "k-mix", image: "images/plates/k-mix.jpg", name: "كشري مكس", en: "Koshari Mix", desc: "طبقات كشري حلو متداخلة: قشطة، مكسرات وصلصات، في علبة دائرية بالشعار." },
+            { id: "k-pistachio", image: "images/plates/k-pistachio.jpg", name: "كشري فستق كريمي", en: "Koshari Pistachio Cream", desc: "شعيرية مقرمشة مع كريمة فستق كثيفة تغمر الطبقات." },
+            { id: "k-mango", image: "images/plates/k-mango.jpg", name: "كشري مانجو", en: "Koshari Mango", desc: "مكعبات مانجو طازجة فوق طبقات الكشري الحلو والكريمة." },
+            { id: "k-oreo", image: "images/plates/k-oreo.jpg", name: "كشري أوريو بالشوكولاتة", en: "Koshari Oreo & Chocolate", desc: "فتات أوريو وكريمة حليب، مع شوكولاتة بلجيكية تسيل على طبقات الكشري." },
+            { id: "k-fraise", image: "images/plates/k-fraise.jpg", name: "كشري فراولة وشوكولاتة", en: "Koshari Fraise & Chocolat", desc: "فراولة طرية وشوكولاتة بلجيكية تسيل على طبقات الكشري." }
         ]
     },
     {
@@ -49,9 +49,9 @@ const CATEGORIES = [
         blurbFr: "Ice Cream Premium",
         blurbLang: "en",
         items: [
-            { id: "i-pistachio", image: "images/plates/i-pistachio.jpg", name: "گلاص فستق بصوص غني", en: "Pistachio Ice Cream", desc: "سكوب فستق كثيف وصوص فستق غني، داخل العلبة الدائرية بالشعار.", featured: true },
-            { id: "i-lotus", image: "images/plates/i-lotus.jpg", name: "گلاص لوتس", en: "Lotus Ice Cream", desc: "گلاص لوتس كريمي مع فتات البسكويت وصوص الكراميل في العلبة الدائرية.", featured: true },
-            { id: "i-mango", image: "images/plates/i-mango.jpg", name: "گلاص مانجو مع صوص غني", en: "Mango Ice Cream", desc: "سكوبات مانجو مدوّرة وصوص ذهبي، في العلبة الدائرية.", featured: true },
+            { id: "i-pistachio", image: "images/plates/i-pistachio.jpg", name: "گلاص فستق بصوص غني", en: "Pistachio Ice Cream", desc: "سكوب فستق كثيف وصوص فستق غني، داخل العلبة الدائرية بالشعار." },
+            { id: "i-lotus", image: "images/plates/i-lotus.jpg", name: "گلاص لوتس", en: "Lotus Ice Cream", desc: "گلاص لوتس كريمي مع فتات البسكويت وصوص الكراميل في العلبة الدائرية." },
+            { id: "i-mango", image: "images/plates/i-mango.jpg", name: "گلاص مانجو مع صوص غني", en: "Mango Ice Cream", desc: "سكوبات مانجو مدوّرة وصوص ذهبي، في العلبة الدائرية." },
             { id: "i-cheesecake", image: "images/plates/i-cheesecake.jpg", name: "گلاص تشيزكيك", en: "Cheesecake Ice Cream", desc: "قوام تشيزكيك كريمي بارد، مقدّم في نفس العلبة الدائرية." },
             { id: "i-caramel", image: "images/plates/i-caramel.jpg", name: "گلاص حليب وكراميل", en: "Milk & Caramel Ice Cream", desc: "گلاص حليب ناعم وكراميل دافئ، في العلبة الدائرية." }
         ]
@@ -63,9 +63,9 @@ const CATEGORIES = [
         coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         image: "images/conut.jpg",
         items: [
-            { id: "c-one", image: "images/plates/c-one.jpg", name: "ذا ون", en: "The One — Caramel & Strawberry", desc: "كونوت أسطواني من عجين ملفوف مدخّن بسكر القرفة، مبطّن بكريمة كراميل مملح وشرائح فراولة طازجة.", featured: true },
-            { id: "c-pistachio", image: "images/plates/c-pistachio.jpg", name: "كونوت بكريمة الفستق", en: "Pistachio Cream Conut", desc: "كونوت أسطواني ذهبي بسكر القرفة، مبطّن بكريمة فستق غنية ومكسرات فستق محمصة.", featured: true },
-            { id: "c-triple", image: "images/plates/c-triple.jpg", name: "شوكولاتة ثلاثية وبراونيز", en: "Triple Chocolate & Brownies Conut", desc: "كونوت أسطواني بسكر القرفة، محشي سبريد شوكولاتة بلجيكية الداكنة ومكعبات براونيز.", featured: true },
+            { id: "c-one", image: "images/plates/c-one.jpg", name: "ذا ون", en: "The One — Caramel & Strawberry", desc: "كونوت أسطواني من عجين ملفوف مدخّن بسكر القرفة، مبطّن بكريمة كراميل مملح وشرائح فراولة طازجة." },
+            { id: "c-pistachio", image: "images/plates/c-pistachio.jpg", name: "كونوت بكريمة الفستق", en: "Pistachio Cream Conut", desc: "كونوت أسطواني ذهبي بسكر القرفة، مبطّن بكريمة فستق غنية ومكسرات فستق محمصة." },
+            { id: "c-triple", image: "images/plates/c-triple.jpg", name: "شوكولاتة ثلاثية وبراونيز", en: "Triple Chocolate & Brownies Conut", desc: "كونوت أسطواني بسكر القرفة، محشي سبريد شوكولاتة بلجيكية الداكنة ومكعبات براونيز." },
             { id: "c-lemon", image: "images/plates/c-lemon.jpg", name: "تشيزكيك ليمون بوسطن", en: "Lemon Boston Cheesecake Conut", desc: "كونوت أسطواني بسكر القرفة، مبطّن بحشوة تشيزكيك بوسطن وكيرد ليمون أصفر ناصع." }
         ]
     },
@@ -76,9 +76,9 @@ const CATEGORIES = [
         coming: "📍 قريباً بفرع الدروة — تخفيض 20%",
         image: "images/cake.jpg",
         items: [
-            { id: "ck-seb-pist", image: "images/plates/ck-seb-pist.jpg", name: "تري سيباستيان فستق", en: "San Sebastian Pistachio", desc: "سان سيباستيان كريمي بقلب فستق، مقدّم على طبق سيراميك فاخر.", featured: true },
-            { id: "ck-seb-lotus", image: "images/plates/ck-seb-lotus.jpg", name: "تري سيباستيان لوتس", en: "San Sebastian Lotus", desc: "سان سيباستيان بصوص اللوتس الكراميل، مقدّم على طبق سيراميك فاخر.", featured: true },
-            { id: "ck-seb-choco", image: "images/plates/ck-seb-choco.jpg", name: "تري سيباستيان شوكولاتة", en: "San Sebastian Chocolate", desc: "سان سيباستيان محروق السطح بنكهة الشوكولاتة، مقدّم على طبق سيراميك فاخر.", featured: true }
+            { id: "ck-seb-choco", image: "images/plates/ck-seb-choco.jpg", name: "تري سيباستيان شوكولاتة", en: "San Sebastian Chocolate", desc: "سان سيباستيان محروق السطح بنكهة الشوكولاتة، مقدّم على طبق سيراميك فاخر." },
+            { id: "ck-seb-pist", image: "images/plates/ck-seb-pist.jpg", name: "تري سيباستيان فستق", en: "San Sebastian Pistachio", desc: "سان سيباستيان كريمي بقلب فستق، مقدّم على طبق سيراميك فاخر." },
+            { id: "ck-seb-lotus", image: "images/plates/ck-seb-lotus.jpg", name: "تري سيباستيان لوتس", en: "San Sebastian Lotus", desc: "سان سيباستيان بصوص اللوتس الكراميل، مقدّم على طبق سيراميك فاخر." }
         ]
     }
 ];
@@ -89,45 +89,9 @@ function packSrc(cat, item) {
     return item.image ? src + "?v=" + v : src;
 }
 
-function cardMarkup(cat, item) {
-    const shape = cat.id === "qashtota" ? " card-pack" : (cat.id === "koshari" || cat.id === "icecream") ? " card-bowl" : "";
-    const signature = item.featured ? " is-signature" : "";
-    return `
-        <article class="card neon-border${shape}${signature}">
-            ${item.featured ? '<span class="sign-mark">توقيع</span>' : ""}
-            <div class="pack circular-img-container">
-                <img src="${packSrc(cat, item)}" alt="${item.name} — ${item.en}" width="600" height="600" loading="lazy" decoding="async">
-            </div>
-            <h4>${item.name}</h4>
-            <p class="en" lang="en">${item.en}</p>
-            <p class="desc">${item.desc}</p>
-            <div class="card-foot">
-                <span class="featured-badge">مميز وجديد ✨</span>
-                <span class="promo-chip">خصم 20% عند الافتتاح</span>
-            </div>
-        </article>`;
-}
-
-function sliderMarkup(itemsHtml) {
-    return `
-        <div class="feat-slider">
-            <p class="feat-kicker"><span>مختارات التوقيع</span></p>
-            <div class="feat-viewport">
-                <div class="feat-track">${itemsHtml}</div>
-            </div>
-            <div class="feat-controls">
-                <button type="button" class="feat-arrow" data-dir="-1" aria-label="السابق">›</button>
-                <p class="feat-count" aria-live="polite"></p>
-                <button type="button" class="feat-arrow" data-dir="1" aria-label="التالي">‹</button>
-            </div>
-        </div>`;
-}
-
 function renderMenu() {
     const blocks = CATEGORIES.filter((cat) => cat.id !== "qashtota");
-    const markup = (list) => list.map((cat) => {
-        const items = [...cat.items.filter((item) => item.featured), ...cat.items.filter((item) => !item.featured)];
-        return `
+    const markup = (list) => list.map((cat) => `
         <section class="cat-block" id="${cat.id}">
             <div class="cat-head">
                 <h3>${cat.title}</h3>
@@ -135,9 +99,27 @@ function renderMenu() {
                 ${cat.coming ? `<p class="cat-soon">${cat.coming}</p>` : ""}
                 ${cat.blurb ? `<p class="cat-blurb">${cat.blurb}<span lang="${cat.blurbLang || "fr"}">${cat.blurbFr}</span></p>` : ""}
             </div>
-            ${sliderMarkup(items.map((item) => cardMarkup(cat, item)).join(""))}
-        </section>`;
-    }).join("");
+            <div class="grid${cat.id === "qashtota" ? " grid-pack" : ""}">
+                ${cat.items.map((item) => {
+                    const shape = cat.id === "qashtota" ? " card-pack" : (cat.id === "koshari" || cat.id === "icecream") ? " card-bowl" : "";
+                    return `
+                    <article class="card neon-border${shape}">
+                        <div class="pack circular-img-container">
+                            <img src="${packSrc(cat, item)}" alt="${item.name} — ${item.en}" width="${cat.id === "qashtota" ? "800" : "600"}" height="${cat.id === "qashtota" ? "600" : "600"}" loading="lazy" decoding="async">
+                        </div>
+                        <h4>${item.name}</h4>
+                        <p class="en" lang="en">${item.en}</p>
+                        <p class="desc">${item.desc}</p>
+                        <div class="card-foot">
+                            <span class="featured-badge">مميز وجديد ✨</span>
+                            <span class="promo-chip">خصم 20% عند الافتتاح</span>
+                        </div>
+                    </article>
+                `;
+                }).join("")}
+            </div>
+        </section>
+    `).join("");
     document.getElementById("menuGrid").innerHTML = markup(blocks.filter((cat) => cat.id === "koshari"));
     document.getElementById("menuRest").innerHTML = markup(blocks.filter((cat) => cat.id !== "koshari"));
 }
@@ -234,159 +216,6 @@ function initSoonPopup() {
     });
 }
 
-function initFeatureSliders() {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    document.querySelectorAll(".feat-slider").forEach((root) => {
-        const viewport = root.querySelector(".feat-viewport");
-        const track = root.querySelector(".feat-track");
-        const countEl = root.querySelector(".feat-count");
-        const slides = [...track.children].filter((el) => el.classList.contains("card"));
-        const count = slides.length;
-        if (!count) return;
-        const rtl = getComputedStyle(root).direction !== "ltr";
-        let index = 0;
-        let step = 0;
-        let timer = 0;
-        let resumeTimer = 0;
-        let holdUntil = 0;
-        let inView = false;
-        let dragging = false;
-        let locked = null;
-        let startX = 0;
-        let startY = 0;
-        let dragX = 0;
-
-        function gapOf() {
-            const raw = getComputedStyle(track).gap || "0";
-            const n = parseFloat(raw);
-            return Number.isFinite(n) ? n : 0;
-        }
-
-        function measure() {
-            const width = slides[0].getBoundingClientRect().width;
-            step = width > 0 ? width + gapOf() : 0;
-        }
-
-        function xFor(i) {
-            return (rtl ? 1 : -1) * i * step;
-        }
-
-        function apply(animate) {
-            if (!step) measure();
-            track.style.transition = (!animate || reduce) ? "none" : "";
-            track.style.transform = step ? `translate3d(${xFor(index)}px,0,0)` : "";
-            if (countEl) countEl.textContent = count > 1 ? `${index + 1} / ${count}` : "";
-        }
-
-        function go(n, animate) {
-            if (count < 2) return;
-            const last = index;
-            index = (n + count) % count;
-            const far = Math.abs(index - last) > 1;
-            if (!step) measure();
-            track.style.transition = (!animate || reduce || far) ? "none" : "";
-            track.style.transform = step ? `translate3d(${xFor(index)}px,0,0)` : "";
-            if (countEl) countEl.textContent = `${index + 1} / ${count}`;
-        }
-
-        function stop() {
-            clearInterval(timer);
-            timer = 0;
-        }
-
-        function play() {
-            stop();
-            if (reduce || Date.now() < holdUntil || !inView || count < 2) return;
-            timer = setInterval(() => go(index + 1, true), 4200);
-        }
-
-        function pauseFor(ms) {
-            holdUntil = Date.now() + ms;
-            stop();
-            clearTimeout(resumeTimer);
-            resumeTimer = window.setTimeout(() => {
-                holdUntil = 0;
-                play();
-            }, ms);
-        }
-
-        root.querySelectorAll(".feat-arrow").forEach((btn) => {
-            btn.addEventListener("click", () => {
-                go(index + Number(btn.dataset.dir), true);
-                pauseFor(5600);
-            });
-        });
-
-        viewport.addEventListener("pointerdown", (event) => {
-            if (event.pointerType === "mouse" && event.button !== 0) return;
-            dragging = true;
-            locked = null;
-            startX = event.clientX;
-            startY = event.clientY;
-            dragX = 0;
-            pauseFor(5600);
-        });
-
-        viewport.addEventListener("pointermove", (event) => {
-            if (!dragging) return;
-            const dx = event.clientX - startX;
-            const dy = event.clientY - startY;
-            if (locked === null) {
-                if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
-                locked = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
-                if (locked === "y") {
-                    dragging = false;
-                    return;
-                }
-                try { viewport.setPointerCapture(event.pointerId); } catch (err) { /* pointer already gone */ }
-            }
-            if (locked !== "x" || !step) return;
-            event.preventDefault();
-            dragX = dx;
-            track.style.transition = "none";
-            track.style.transform = `translate3d(${xFor(index) + dx}px,0,0)`;
-        }, { passive: false });
-
-        function endDrag() {
-            if (!dragging) return;
-            dragging = false;
-            if (locked === "x" && Math.abs(dragX) > 36) {
-                const towardNext = rtl ? dragX > 0 : dragX < 0;
-                go(towardNext ? index + 1 : index - 1, true);
-            } else if (locked === "x") {
-                go(index, true);
-            }
-            locked = null;
-            pauseFor(5600);
-        }
-
-        viewport.addEventListener("pointerup", endDrag);
-        viewport.addEventListener("pointercancel", endDrag);
-        root.addEventListener("mouseenter", () => { stop(); });
-        root.addEventListener("mouseleave", () => {
-            if (dragging) return;
-            play();
-        });
-        root.addEventListener("focusin", () => { stop(); });
-        root.addEventListener("focusout", () => { play(); });
-
-        const watch = new IntersectionObserver((entries) => {
-            inView = entries.some((entry) => entry.isIntersecting);
-            measure();
-            apply(false);
-            play();
-        }, { threshold: 0.35 });
-        watch.observe(root);
-        window.addEventListener("resize", () => {
-            measure();
-            apply(false);
-        });
-        measure();
-        apply(false);
-    });
-}
-
 if (document.getElementById("menuGrid") && document.getElementById("menuRest")) renderMenu();
-initFeatureSliders();
 initHeroSlider();
 initSoonPopup();
